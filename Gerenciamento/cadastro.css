@@ -1,0 +1,84 @@
+:root{
+    --cor-do-fundo: 37, 37, 37;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(var(--cor-do-fundo));
+}
+
+h1{
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#caixa{
+    width: 35vw;
+    height: 50vh;
+    border: rgb(73, 73, 73) 1px solid;
+    border-radius: 10px;
+    background-color: rgb(73, 73, 73);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+h1{
+    background-color: rgb(73, 73, 73);
+    margin-top: 30px;
+    text-align: center;
+}
+
+.botoes{
+    margin: 2rem;
+    background-color: rgb(73, 73, 73);
+}
+
+#objeto{
+    width: 20vw;
+}
+
+input{
+    padding-left: 1rem;
+    width: 20vw;
+    height: 2rem;
+    margin: 10px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+}
+
+.botao{
+    background-color: rgb(73, 73, 73);
+}
+label{
+    background-color: rgb(73, 73, 73);
+    color: #ffffff;
+    font-family: "Noto Sans", sans-serif;
+}
+
+#obj {
+    width: 17vw;
+}
+
+option {
+    background-color: rgb(var(--cor-do-fundo));
+    color: #ffffff;
+    font-family: "Noto Sans", sans-serif;
+    border: none;
+}
