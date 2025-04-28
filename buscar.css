@@ -1,0 +1,85 @@
+:root {
+  --cor-do-fundo: 37, 37, 37;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(var(--cor-do-fundo));
+  font-family: "Noto Sans", sans-serif;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  pointer-events: none;
+}
+
+a {
+  font-size: 1rem;
+  background-color: gray;
+  color: #ffffff;
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  text-decoration: none;
+}
+
+label {
+  position: retalive;
+  width: 70vw;
+  height: 2rem;
+}
+
+input {
+  width: 70vw;
+  height: 2rem;
+  border: 1px solid white;
+  border-radius: 50px;
+  background-color: white;
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.icone-lupa {
+  font-size: 16px;
+  color: white;
+}
+
+table {
+  width: 70vw;
+  background-color: grey;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid grey;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+tr {
+  background-color: grey;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+th {
+  background-color: grey;
+  text-align: center;
+}
+
+td {
+  background-color: rgb(204, 204, 204);
+  text-align: center;
+}
