@@ -56,3 +56,12 @@ a{
     font-optical-sizing: auto;
     text-decoration: none;
 }
+
+img{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 10px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}

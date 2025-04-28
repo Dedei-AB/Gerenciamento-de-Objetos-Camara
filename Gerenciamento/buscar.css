@@ -83,3 +83,12 @@ td {
   background-color: rgb(204, 204, 204);
   text-align: center;
 }
+
+img{
+  width: 2rem;
+  height: 2rem;
+  margin-left: 10px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
