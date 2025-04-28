@@ -5,25 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Objetos Câmara</title>
 </head>
-<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="atualizar.css">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 </style>
 
 <body>
     <div id="container">
-        <h1>Gerenciamento de Objetos Câmara</h1>
-        <div class="butn">
-            <button class="botao" id="botaoCadastro">
-                <a href="cadastro.html">Cadastrar</a>
-            </button>
-            <button class="botao" id="botaoObjetos">
-                <a href="consulta.html">Buscar</a>
-            </button>
-            <button class="botao" id="botaoAtualizar">
-                <a href="relatorio.html">Atualizar</a>
-            </button>
-        </div>
+        <h1>Atualizar Objetos Câmara</h1>
+
+        <form action="/at">
+
+            <label for="objetoID">ID/Nome do objeto</label>
+            <input type="text" id="objetoID" name="objetoID"  placeholder="ID ou nome do objeto:"> <br> <br>
+
+            <label for="estadoObjeto">Estado do objeto</label>
+            <select name="estado" id="estadoObjeto">
+                <option value="Ótimo">Ótimo</option>
+                <option value="Bom">Bom</option>
+                <option value="Ruim">Ruim</option>
+            </select><br><br>
+
+            
+            <label for="objetoLugar">Lugar do objeto:</label>
+            <select name="objetoLugar" id="objetoLugar">
+                <option value="value">piso 1</option>
+                <option value="value">piso 2</option>
+            </select>
+            <input list="objetoLugar" id="objetoLugar" name="objetoLugar" placeholder="Lugar do objeto:"/><br><br>
+           
+
+
+            <button class="botao" type="submit">Atualizar</button>
+          
+       </form>
 </div>
 </body>
 </html>
