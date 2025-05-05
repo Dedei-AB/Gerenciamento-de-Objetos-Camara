@@ -27,19 +27,66 @@
                 <option value="Ruim">Ruim</option>
             </select><br><br>
 
-            
-            <label for="objetoLugar">Lugar do objeto:</label>
-            <select name="objetoLugar" id="objetoLugar">
-                <option value="value">piso 1</option>
-                <option value="value">piso 2</option>
-            </select>
-            <input list="objetoLugar" id="objetoLugar" name="objetoLugar" placeholder="Lugar do objeto:"/><br><br>
-           
+            <div >
+                <label for="piso">Selecione o Piso:</label>
+                <br>
+                <select id="piso" onchange="filtrarLugares()">
+                  <option value="">- Selecione -</option>
+                  <option value="piso1">Piso 1</option>
+                  <option value="piso2">Piso 2</option>
+                </select>
+              </div>
+          
+              <div >
+                <br>
+                <label for="busca">Digite o nome do lugar:</label>
+                <input type="text" id="busca" placeholder="Ex: Sala de reunião" oninput="filtrarLugares()">
+              </div>
+          
+              <div class="lugares">
+                <div class="lugar piso1" onclick="selecionarLugar(this)">Recepção</div>
+                <div class="lugar piso1" onclick="selecionarLugar(this)">Sala de Leitura</div>
+                <div class="lugar piso1" onclick="selecionarLugar(this)">Auditório</div>
+          
+                <div class="lugar piso2" onclick="selecionarLugar(this)">Laboratório</div>
+                <div class="lugar piso2" onclick="selecionarLugar(this)">COTEC</div>
+                <div class="lugar piso2" onclick="selecionarLugar(this)">Sala de Reunião</div>
+              </div>
+          
+    
 
 
             <button class="botao" type="submit">Atualizar</button>
           
        </form>
+
+       <script>
+        function filtrarLugares() {
+          const pisoSelecionado = document.getElementById("piso").value;
+          const buscaTexto = document.getElementById("busca").value.toLowerCase();
+          const lugares = document.querySelectorAll(".lugar");
+    
+          lugares.forEach(lugar => {
+            const pertenceAoPiso = lugar.classList.contains(pisoSelecionado);
+            const contemTexto = lugar.textContent.toLowerCase().includes(buscaTexto);
+    
+            if (pisoSelecionado && pertenceAoPiso && contemTexto) {
+              lugar.classList.add("mostrar");
+            } else {
+              lugar.classList.remove("mostrar");
+            }
+          });
+    
+          document.getElementById("selecionado").style.display = "none"; // esconde seleção ao filtrar novamente
+        }
+    
+        function selecionarLugar(elemento) {
+          const nome = elemento.textContent;
+          const selecionadoDiv = document.getElementById("selecionado");
+          selecionadoDiv.innerHTML = `Você selecionou: <strong>${nome}</strong>`;
+          selecionadoDiv.style.display = "block";
+        }
+      </script>
 </div>
 </body>
 </html>
