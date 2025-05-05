@@ -21,6 +21,7 @@
 }
 
 #caixa {
+    margin-top: 30px;
     width: 35vw;
     min-height: 70vh; /* Aumentado para caber todos os inputs */
     padding: 2rem;
@@ -75,11 +76,10 @@ label{
 
 
 img{
-    width: 8rem;
-    height: 12vh;
+    width: 10rem;
+    height: auto;
     margin-left: 10px;
-    position: fixed;
-    top: 20px;
+   
 }
 
 #estadoObjeto{
@@ -159,6 +159,55 @@ form{
   }
 
 
+  @media (max-width: 1024px) {
+    #caixa {
+      width: 80vw;
+      min-height: auto;
+      padding: 1.5rem;
+    }
+  
+    .atualizar {
+      width: 60%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #container {
+      padding: 1rem;
+    }
+  
+    #caixa {
+      width: 95vw;
+      padding: 1rem;
+      border-radius: 20px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+  
+    img {
+      width: 6rem;
+      height: auto;
+      top: 10px;
+    }
+  
+    .atualizar {
+      width: 100%;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+  
+    .lugar {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  
+    input, select {
+      font-size: 14px;
+    }
+  }
 
 
 
