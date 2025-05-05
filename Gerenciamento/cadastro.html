@@ -11,23 +11,54 @@
 </style>
 <body>
     <div class="container">
-        <img src="/ChatGPT Image 28 de abr. de 2025, 14_36_26 (1).png" alt="">
+        <img src="/Gerenciamento/ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
         <div id="caixa">
         <h1>Cadastrar Objeto</h1>
+        <div style="width: 58%; height: 2px; background-color: white;"></div>
+        <h2>Número do Objeto <div id="numero"></div></h2>
         <div class="botoes">
                 <input type="text" placeholder="Monitor, Impressora..." id="obj">
                 <label for="Complemento"> Objeto</label>
 
                 <input type="text" placeholder="Cor branca, Positivo..." >
                 <label for="Complemento"> Complemento</label>
-
-                <label for="">Estado do Objeto</label>
+                <br>
                 <select name="" id="">
-                    <option value="">Status</option>
+                    <option value="">Ótimo</option>
+                    <option value="">Utilizável</option>
+                    <option value="">Ruim</option>
                 </select>
+                <label for="">Estado do Objeto </label>
+                <br>
+                <div id="mesma">
+                    <select name="" id="">
+                        <option value="">Piso 1</option>
+                        <option value="">Piso 2</option>
+                        <option value="">Garagem</option>
+                    </select>
+                    <label for="">Piso </label>
+                    <select name="" id="">
+                        <option value="">Gabinete</option>
+                        <option value="">Plenário</option>
+                        <option value="">COTEC</option>
+                        <option value="">Almoxarifado</option>
+                    </select>
+                    <label for="">Local </label>
+                    <button>Concluído</button>
+                </div>
         </div>
+        
         </div>
     </div>
-    
+
+    <script>
+        function gerarNumeroAleatorio() {
+            // Gera um número entre 1000 e 9999
+            return Math.floor(1000 + Math.random() * 9000);
+        }
+
+        // Exibe o número no elemento
+        document.getElementById("numero").textContent = gerarNumeroAleatorio();
+    </script>
 </body>
 </html>
