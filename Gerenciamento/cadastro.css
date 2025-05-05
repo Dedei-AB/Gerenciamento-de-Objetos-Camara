@@ -40,11 +40,18 @@ h1{
 h1{
     background-color: rgb(73, 73, 73);
     margin-top: 30px;
+    margin-bottom: 30px;
     text-align: center;
 }
-
+h2{
+    background-color: rgb(73, 73, 73);
+    text-align: center;
+    margin-top: 30px;
+    color: #ffffff;
+    font-family: "Noto Sans", sans-serif;
+}
 .botoes{
-    margin: 2rem;
+    margin: 1rem;
     background-color: rgb(73, 73, 73);
 }
 
@@ -117,6 +124,34 @@ select {
     color: #000000;
     font-family: "Noto Sans", sans-serif;
 }
+#mesma{
+    background-color: rgb(73, 73, 73);
+}
+label{
+    margin-right: 50px;
+}
+
+button{
+    width: 5vw;
+    height: 2rem;
+    margin: 10px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+}
+button:hover {
+    background-color: #45a049;
+    cursor: pointer;
+    transition: 1s;
+}
+
+#numero{    
+    background-color: rgb(73, 73, 73);
+    color: #fff;
+    font-family: "Noto Sans";
+    font-size: 25px;
+    }
 
 @media (max-width: 768px) {
     #caixa {
