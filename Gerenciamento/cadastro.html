@@ -31,20 +31,19 @@
                 <label for="">Estado do Objeto </label>
                 <br>
                 <div id="mesma">
-                    <select name="" id="">
-                        <option value="">Piso 1</option>
-                        <option value="">Piso 2</option>
-                        <option value="">Garagem</option>
-                    </select>
-                    <label for="">Piso </label>
-                    <select name="" id="">
-                        <option value="">Gabinete</option>
-                        <option value="">Plenário</option>
-                        <option value="">COTEC</option>
-                        <option value="">Almoxarifado</option>
-                    </select>
-                    <label for="">Local </label>
-                    <button>Concluído</button>
+                    <select id="Piso" onchange="atualizarLocais()">
+                        <option value="">Selecionar</option>
+                        <option value="piso1">Piso 1</option>
+                        <option value="piso2">Piso 2</option>
+                        <option value="garagem">Garagem</option>
+                      </select>
+                      <label for="Piso">Piso</label>
+                    
+                      <select id="Local">
+                        <option value="">Selecionar</option>
+                      </select>
+                      <label for="Local">Local</label>
+                      <button>Concluído</button>
                 </div>
         </div>
         
@@ -53,12 +52,33 @@
 
     <script>
         function gerarNumeroAleatorio() {
-            // Gera um número entre 1000 e 9999
-            return Math.floor(1000 + Math.random() * 9000);
+            return Math.floor(1 + Math.random() * 9000);
         }
-
-        // Exibe o número no elemento
         document.getElementById("numero").textContent = gerarNumeroAleatorio();
+
+        const locaisPorPiso = {
+            piso1: ["Gabinete", "Plenário"],
+            piso2: ["COTEC"],
+            garagem: ["Copa"]
+        };
+
+        function atualizarLocais() {
+            const pisoSelecionado = document.getElementById("Piso").value;
+            const localSelect = document.getElementById("Local");
+
+            // Limpa as opções antigas
+            localSelect.innerHTML = '<option value="">Selecionar</option>';
+
+            // Adiciona as opções corretas
+            if (locaisPorPiso[pisoSelecionado]) {
+            locaisPorPiso[pisoSelecionado].forEach(local => {
+                const option = document.createElement("option");
+                option.value = local;
+                option.textContent = local;
+                localSelect.appendChild(option);
+            });
+            }
+        }
     </script>
 </body>
 </html>

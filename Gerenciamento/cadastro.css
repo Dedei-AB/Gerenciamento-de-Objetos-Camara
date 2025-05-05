@@ -153,14 +153,60 @@ button:hover {
     font-size: 25px;
     }
 
-@media (max-width: 768px) {
+@media (max-width: 786px) {
     #caixa {
+        margin-top: 200px;
         width: 90vw;
         height: auto;
         padding-bottom: 2rem;
     }
 
-    input, select {
-        width: 80vw !important;
+    input {
+        width: 40vw !important;
+
+    }
+    select{
+        width: 18vw !important
+    }
+    button{
+        width: 18vw;
+    }
+}
+@media (max-width: 896px) {
+    #caixa {
+        margin-top: 200px;
+        width: 90vw;
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    input {
+        width: 40vw !important;
+
+    }
+    select{
+        width: 18vw !important
+    }
+    button{
+        width: 18vw;
+    }
+}
+@media (max-width: 985px) {
+    #caixa {
+        margin-top: 200px;
+        width: 90vw;
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    input {
+        width: 40vw !important;
+
+    }
+    select{
+        width: 18vw !important
+    }
+    button{
+        width: 18vw;
     }
 }
