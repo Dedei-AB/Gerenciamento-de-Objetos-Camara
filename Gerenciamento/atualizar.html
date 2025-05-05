@@ -12,8 +12,9 @@
 
 <body>
     <div id="container">
-        <img src="/Gerenciamento/ChatGPT Image 28 de abr. de 2025, 14_36_26 (1).png" alt="">
-        <h1>Atualizar Objetos Câmara</h1>
+      <img src="/Gerenciamento/ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
+      <div id="caixa">
+        <h1>Atualizar Objetos</h1>
 
         <form action="/at">
 
@@ -27,7 +28,8 @@
                 <option value="Ruim">Ruim</option>
             </select><br><br>
 
-            <div >
+            
+            <div class="lugarcor">
                 <label for="piso">Selecione o Piso:</label>
                 <br>
                 <select id="piso" onchange="filtrarLugares()">
@@ -35,15 +37,14 @@
                   <option value="piso1">Piso 1</option>
                   <option value="piso2">Piso 2</option>
                 </select>
-              </div>
+              </div><br>
           
-              <div >
-                <br>
+              <div class="lugarcor">
                 <label for="busca">Digite o nome do lugar:</label>
                 <input type="text" id="busca" placeholder="Ex: Sala de reunião" oninput="filtrarLugares()">
               </div>
           
-              <div class="lugares">
+              <div class="lugares" >
                 <div class="lugar piso1" onclick="selecionarLugar(this)">Recepção</div>
                 <div class="lugar piso1" onclick="selecionarLugar(this)">Sala de Leitura</div>
                 <div class="lugar piso1" onclick="selecionarLugar(this)">Auditório</div>
@@ -52,13 +53,14 @@
                 <div class="lugar piso2" onclick="selecionarLugar(this)">COTEC</div>
                 <div class="lugar piso2" onclick="selecionarLugar(this)">Sala de Reunião</div>
               </div>
-          
-    
+              
+              
 
-
-            <button class="botao" type="submit">Atualizar</button>
-          
+              <button class="atualizar" type="submit">Atualizar</button>
+          </div>
+        
        </form>
+       
 
        <script>
         function filtrarLugares() {
