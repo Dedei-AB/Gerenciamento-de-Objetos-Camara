@@ -12,6 +12,7 @@
 <body>
     <div class="container">
         <img src="/Gerenciamento/ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
+       
         <div id="caixa">
         <h1>Cadastrar Objeto</h1>
         <div style="width: 58%; height: 2px; background-color: white;"></div>
@@ -20,13 +21,13 @@
                 <input type="text" placeholder="Monitor, Impressora..." id="obj">
                 <label for="Complemento"> Objeto</label>
 
-                <input type="text" placeholder="Cor branca, Positivo..." >
+                <input type="text" placeholder="Cor branca, Positivo..." id="complemento">
                 <label for="Complemento"> Complemento</label>
                 <br>
-                <select name="" id="">
-                    <option value="">Ótimo</option>
-                    <option value="">Utilizável</option>
-                    <option value="">Ruim</option>
+                <select name="" id="estado">
+                    <option value="otimo">Ótimo</option>
+                    <option value="utilizavel">Utilizável</option>
+                    <option value="ruim">Ruim</option>
                 </select>
                 <label for="">Estado do Objeto </label>
                 <br>
@@ -43,7 +44,7 @@
                         <option value="">Selecionar</option>
                       </select>
                       <label for="Local">Local</label>
-                      <button>Concluído</button>
+                      <button id="concluido">Concluído</button>
                 </div>
         </div>
         
@@ -54,31 +55,60 @@
         function gerarNumeroAleatorio() {
             return Math.floor(1 + Math.random() * 9000);
         }
-        document.getElementById("numero").textContent = gerarNumeroAleatorio();
-
+    
+        window.onload = function () {
+            document.getElementById("numero").textContent = gerarNumeroAleatorio();
+        };
+    
         const locaisPorPiso = {
             piso1: ["Gabinete", "Plenário"],
             piso2: ["COTEC"],
             garagem: ["Copa"]
         };
-
+    
         function atualizarLocais() {
             const pisoSelecionado = document.getElementById("Piso").value;
             const localSelect = document.getElementById("Local");
-
-            // Limpa as opções antigas
+    
             localSelect.innerHTML = '<option value="">Selecionar</option>';
-
-            // Adiciona as opções corretas
+    
             if (locaisPorPiso[pisoSelecionado]) {
-            locaisPorPiso[pisoSelecionado].forEach(local => {
-                const option = document.createElement("option");
-                option.value = local;
-                option.textContent = local;
-                localSelect.appendChild(option);
-            });
+                locaisPorPiso[pisoSelecionado].forEach(local => {
+                    const option = document.createElement("option");
+                    option.value = local;
+                    option.textContent = local;
+                    localSelect.appendChild(option);
+                });
             }
         }
+        document.getElementById("concluido").addEventListener("click", function () {
+        const obj = document.getElementById("obj").value.trim();
+        const complemento = document.getElementById("complemento").value.trim();
+        const estado = document.getElementById("estado").value.trim();
+        const piso = document.getElementById("Piso").value.trim();
+        const local = document.getElementById("Local").value.trim();
+
+        if (!obj || !complemento || !estado || !piso || !local) {
+            alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
+        } else {
+            alert("Cadastro realizado com sucesso!");
+        }
+    });
+
+    document.getElementById("concluido").addEventListener("click", function () {
+    const obj = document.getElementById("obj").value.trim();
+    const complemento = document.getElementById("complemento").value.trim();
+    const estado = document.getElementById("estado").value.trim();
+    const piso = document.getElementById("Piso").value.trim();
+    const local = document.getElementById("Local").value.trim();
+
+    if (!obj || !complemento || !estado || !piso || !local) {
+        alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
+    } else {
+        window.location.href = "busca.html";
+    }
+});
     </script>
+
 </body>
 </html>
