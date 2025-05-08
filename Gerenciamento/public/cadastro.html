@@ -11,7 +11,7 @@
 </style>
 <body>
     <div class="container">
-        <img src="/Gerenciamento/ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
+        <img src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
        
         <div id="caixa">
         <h1>Cadastrar Objeto</h1>
@@ -107,6 +107,57 @@
     } else {
         window.location.href = "busca.html";
     }
+});
+       let codigoGerado = "";
+
+        async function gerarCodigo() {
+            const res = await fetch("http://localhost:3000/codigo");
+            const data = await res.json();
+            codigoGerado = data.codigo;
+            document.getElementById("codigo").textContent = "Código: " + codigoGerado;
+            document.getElementById("codigoInput").value = codigoGerado;
+        }
+
+        document.getElementById("form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const payload = {
+                codigo: document.getElementById("codigoInput").value,
+                tipoObjeto: document.getElementById("tipoObjeto").value,
+                status: document.getElementById("status").value,
+                sala: document.getElementById("sala").value,
+                complemento: document.getElementById("complemento").value
+            };
+
+            const res = await fetch("http://localhost:3000/salvar-codigo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await res.json();
+            alert(data.mensagem || data.erro);
+        });
+
+        gerarCodigo();
+
+        document.getElementById("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const payload = {
+    codigo: document.getElementById("codigoInput").value,
+    tipoObjeto: document.getElementById("obj").value,
+    status: document.getElementById("estado").value,
+    sala: document.getElementById("Local").value,
+    complemento: document.getElementById("complemento").value
+  };
+
+  const res = await fetch("http://localhost:3000/objetos/salvar-codigo", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await res.json();
+  alert(data.mensagem || data.erro);
 });
     </script>
 
