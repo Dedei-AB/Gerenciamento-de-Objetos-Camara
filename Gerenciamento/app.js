@@ -7,6 +7,6 @@ app.use(express.static('public')); // arquivos HTML, CSS, JS frontend
 
 app.use('/objetos', objetosRoutes);
 
-app.listen(3306, () => {
+app.listen(3000, () => {
   console.log('Servidor rodando em http://localhost:3000');
 });
