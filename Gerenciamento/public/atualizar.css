@@ -57,7 +57,7 @@ h1{
         width: 50%;
 }
 .atualizar:hover{
-    background-color: #19811d;
+    background-color: #bdffbf;
 }
 a{
     font-size: 1rem ;
@@ -93,8 +93,6 @@ img{
 }
 
 #objetoID{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #ffffff;
     border-radius: 30px;
     border: none;
     width: 100%;
@@ -144,11 +142,6 @@ form{
 
   .lugar.mostrar {
     display: block;
-  }
-
-  .lugarcor{
-    background-color: rgb(73, 73, 73);
-    width: 100%;
   }
 
   .lugares{

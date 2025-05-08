@@ -29,17 +29,18 @@
             </select><br><br>
 
             
-            <div class="lugarcor">
+            <div class="lugares">
                 <label for="piso">Selecione o Piso:</label>
                 <br>
                 <select id="piso" onchange="filtrarLugares()">
                   <option value="">- Selecione -</option>
                   <option value="piso1">Piso 1</option>
                   <option value="piso2">Piso 2</option>
+                  <option value="Garagem">Garagem</option>
                 </select>
               </div><br>
           
-              <div class="lugarcor">
+              <div class="lugares">
                 <label for="busca">Digite o nome do lugar:</label>
                 <input type="text" id="busca" placeholder="Ex: Sala de reunião" oninput="filtrarLugares()">
               </div>
@@ -53,9 +54,12 @@
                 <div class="lugar piso2" onclick="selecionarLugar(this)">COTEC</div>
                 <div class="lugar piso2" onclick="selecionarLugar(this)">Sala de Reunião</div>
 
+                <div class="lugar Garagem" onclick="selecionarLugar(this)">Garagem</div>                
+
               </div>
               
-              
+              <div id="selecionado" style="display:none; color: white; margin-top: 10px;"></div>
+
 
               <button class="atualizar" type="submit">Atualizar</button>
           </div>
@@ -83,12 +87,14 @@
           document.getElementById("selecionado").style.display = "none"; // esconde seleção ao filtrar novamente
         }
     
+
         function selecionarLugar(elemento) {
-          const nome = elemento.textContent;
-          const selecionadoDiv = document.getElementById("selecionado");
-          selecionadoDiv.innerHTML = `Você selecionou: <strong>${nome}</strong>`;
-          selecionadoDiv.style.display = "block";
-        }
+        const nome = elemento.textContent;
+        const selecionadoDiv = document.getElementById("selecionado");
+        selecionadoDiv.style.display = "block";
+        document.getElementById("busca").value = nome;
+      }
+
       </script>
 </div>
 </body>
