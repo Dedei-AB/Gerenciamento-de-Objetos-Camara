@@ -3,9 +3,9 @@ const app = express();
 const objetosRoutes = require("./routes/objeto.js"); // Importando o arquivo de rotas
 
 app.use(express.json());
-app.use(express.static('public')); // Arquivos estáticos como HTML, CSS, JS
+app.use(express.static('public')); 
+app.use(express.urlencoded({ extended: true }));
 
-// Mapeando a rota /objetos para o arquivo de rotas
 app.use('/', objetosRoutes);
 
 app.listen(3000, () => {

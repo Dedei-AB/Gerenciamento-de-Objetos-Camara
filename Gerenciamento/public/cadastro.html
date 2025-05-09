@@ -25,6 +25,7 @@
           <div id="numero"></div>
         </h2>
         <div class="botoes">
+<<<<<<< Updated upstream
           <input type="text" placeholder="Monitor, Impressora..." id="obj" />
           <label for="Complemento"> Objeto</label>
 
@@ -57,11 +58,56 @@
             <label for="Local">Local</label>
           </div>
           <button id="Concluido">Concluído</button>
+=======
+            <form id="form">
+                <!-- Código gerado automaticamente -->
+                <div id="codigo">Código: <span id="numero"></span></div>
+                <input type="hidden" id="codigoInput" name="codigo">
+
+                <!-- Tipo do objeto -->
+                <input type="text" placeholder="Monitor, Impressora..." id="obj" required>
+                <label for="obj">Objeto</label>
+
+                <!-- Complemento -->
+                <input type="text" placeholder="Cor branca, Positivo..." id="complemento" required>
+                <label for="complemento">Complemento</label>
+
+                <!-- Estado -->
+                <select id="estado" required>
+                    <option value="">Selecionar Estado</option>
+                    <option value="otimo">Ótimo</option>
+                    <option value="utilizavel">Utilizável</option>
+                    <option value="ruim">Ruim</option>
+                </select>
+                <label for="estado">Estado do Objeto</label>
+
+                <!-- Piso -->
+                <select id="Piso" onchange="atualizarLocais()" required>
+                    <option value="">Selecionar Piso</option>
+                    <option value="piso1">Piso 1</option>
+                    <option value="piso2">Piso 2</option>
+                    <option value="garagem">Garagem</option>
+                </select>
+                <label for="Piso">Piso</label>
+
+                <!-- Local (sala) -->
+                <select id="Local" required>
+                    <option value="">Selecionar Local</option>
+                </select>
+                <label for="Local">Local</label>
+
+                <!-- Botão de envio -->
+                <button type="button" id="concluido">Concluído</button>
+            </form>
+        </div>
+        
+>>>>>>> Stashed changes
         </div>
       </div>
     </div>
 
     <script>
+<<<<<<< Updated upstream
       function gerarNumeroAleatorio() {
         return Math.floor(1000 + Math.random() * 9000);
       }
@@ -182,6 +228,85 @@
         const data = await res.json();
         alert(data.mensagem || data.erro);
       });
+=======
+        window.onload = function () {
+            document.getElementById("numero").textContent = gerarNumeroAleatorio();
+        };
+    
+        const locaisPorPiso = {
+            piso1: ["Gabinete", "Plenário"],
+            piso2: ["COTEC"],
+            garagem: ["Copa"]
+        };
+    
+        function atualizarLocais() {
+            const pisoSelecionado = document.getElementById("Piso").value;
+            const localSelect = document.getElementById("Local");
+    
+            localSelect.innerHTML = '<option value="">Selecionar</option>';
+    
+            if (locaisPorPiso[pisoSelecionado]) {
+                locaisPorPiso[pisoSelecionado].forEach(local => {
+                    const option = document.createElement("option");
+                    option.value = local;
+                    option.textContent = local;
+                    localSelect.appendChild(option);
+                });
+            }
+        }
+        
+       let codigoGerado = "";
+
+        async function gerarCodigo() {
+            const res = await fetch("http://localhost:3000/codigo");
+            const data = await res.json();
+            codigoGerado = data.codigo;
+            document.getElementById("codigo").textContent = "Código: " + codigoGerado;
+            document.getElementById("codigoInput").value = codigoGerado;
+        }
+
+        document.getElementById("form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const payload = {
+                codigo: document.getElementById("codigoInput").value,
+                tipoObjeto: document.getElementById("tipoObjeto").value,
+                status: document.getElementById("status").value,
+                sala: document.getElementById("sala").value,
+                complemento: document.getElementById("complemento").value
+            };
+
+            const res = await fetch("http://localhost:3000/salvar-codigo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await res.json();
+            alert(data.mensagem || data.erro);
+        });
+
+
+       document.getElementById("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const payload = {
+        codigo: document.getElementById("codigoInput").value,
+        tipoObjeto: document.getElementById("obj").value,
+        status: document.getElementById("estado").value,
+        sala: document.getElementById("Local").value,
+        complemento: document.getElementById("complemento").value
+    };
+
+    const res = await fetch("http://localhost:3000/cadastrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    alert(data.mensagem || data.erro);
+});
+>>>>>>> Stashed changes
     </script>
   </body>
 </html>
