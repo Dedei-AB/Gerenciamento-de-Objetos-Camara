@@ -1,187 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <link rel="stylesheet" href="cadastro.css" />
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-  </style>
-  <body>
+</head>
+<link rel="stylesheet" href="cadastro.css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+<body>
     <div class="container">
-      <img
-        class="logo"
-        onclick="window.location.href='index.html' "
-        src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png"
-        alt=""
-      />
-      <div id="caixa">
+        <img class="logo" onclick="window.location.href='index.html' " src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
+        <div id="caixa">
         <h1>Cadastrar Objeto</h1>
-        <div style="width: 58%; height: 2px; background-color: white"></div>
-        <h2>
-          Número do Objeto
-          <div id="numero"></div>
-        </h2>
+        <div style="width: 58%; height: 2px; background-color: white;"></div>
+        <h2>Número do Objeto <div id="numero"></div></h2>
         <div class="botoes">
-          <input type="text" placeholder="Monitor, Impressora..." id="obj" />
-          <label for="Complemento"> Objeto</label>
+            <form id="form">
+                <!-- Código gerado automaticamente -->
+                <div id="codigo">Código: <span id="numero"></span></div>
+                <input type="hidden" id="codigoInput" name="codigo">
 
-          <input
-            type="text"
-            placeholder="Cor branca, Positivo..."
-            id="complemento"
-          />
-          <label for="Complemento"> Complemento</label>
-          <br />
-          <select name="" id="estado">
-            <option value="bom">Bom</option>
-            <option value="usável">Usável</option>
-            <option value="ruim">Ruim</option>
-          </select>
-          <label for="">Estado do Objeto </label>
-          <div class="Local">
-            <select id="piso" onchange="atualizarLocais()">
-              <option value="">Selecionar</option>
-              <option value="piso1">Piso 1</option>
-              <option value="piso2">Piso 2</option>
-              <option value="garagem">Garagem</option>
-            </select>
+                <!-- Tipo do objeto -->
+                <input type="text" placeholder="Monitor, Impressora..." id="obj" required>
+                <label for="obj">Objeto</label>
 
-            <label for="Piso">Piso</label>
+                <!-- Complemento -->
+                <input type="text" placeholder="Cor branca, Positivo..." id="complemento" required>
+                <label for="complemento">Complemento</label>
 
-            <select id="Local">
-              <option value="">Selecionar</option>
-            </select>
-            <label for="Local">Local</label>
-          </div>
-          <button id="Concluido">Concluído</button>
+                <!-- Estado -->
+                <select id="estado" required>
+                    <option value="">Selecionar Estado</option>
+                    <option value="otimo">Ótimo</option>
+                    <option value="utilizavel">Utilizável</option>
+                    <option value="ruim">Ruim</option>
+                </select>
+                <label for="estado">Estado do Objeto</label>
+
+                <!-- Piso -->
+                <select id="Piso" onchange="atualizarLocais()" required>
+                    <option value="">Selecionar Piso</option>
+                    <option value="piso1">Piso 1</option>
+                    <option value="piso2">Piso 2</option>
+                    <option value="garagem">Garagem</option>
+                </select>
+                <label for="Piso">Piso</label>
+
+                <!-- Local (sala) -->
+                <select id="Local" required>
+                    <option value="">Selecionar Local</option>
+                </select>
+                <label for="Local">Local</label>
+
+                <!-- Botão de envio -->
+                <button type="button" id="concluido">Concluído</button>
+            </form>
         </div>
-      </div>
+        
+        </div>
     </div>
 
     <script>
-      function gerarNumeroAleatorio() {
-        return Math.floor(1000 + Math.random() * 9000);
-      }
-
-      window.onload = function () {
-        document.getElementById("numero").textContent = gerarNumeroAleatorio();
-      };
-
+        //Locais
       const locaisPorPiso = {
-        piso1: ["Gabinete", "Plenário"],
-        piso2: ["COTEC"],
-        garagem: ["Copa"],
-      };
+    piso1: ["Gabinete", "Plenário"],
+    piso2: ["COTEC"],
+    garagem: ["Copa"]
+};
 
-      function atualizarLocais() {
-        const pisoSelecionado = document.getElementById("Piso").value;
-        const localSelect = document.getElementById("Local");
+function atualizarLocais() {
+    const pisoSelecionado = document.getElementById("Piso").value;
+    const localSelect = document.getElementById("Local");
 
-        localSelect.innerHTML = '<option value="">Selecionar</option>';
+    localSelect.innerHTML = '<option value="">Selecionar</option>';
 
-        if (locaisPorPiso[pisoSelecionado]) {
-          locaisPorPiso[pisoSelecionado].forEach((local) => {
+    if (locaisPorPiso[pisoSelecionado]) {
+        locaisPorPiso[pisoSelecionado].forEach(local => {
             const option = document.createElement("option");
             option.value = local;
             option.textContent = local;
             localSelect.appendChild(option);
-          });
-        }
-      }
-      document
-        .getElementById("concluido")
-        .addEventListener("click", function () {
-          const obj = document.getElementById("obj").value.trim();
-          const complemento = document
-            .getElementById("complemento")
-            .value.trim();
-          const estado = document.getElementById("estado").value.trim();
-          const piso = document.getElementById("Piso").value.trim();
-          const local = document.getElementById("Local").value.trim();
-
-          if (!obj || !complemento || !estado || !piso || !local) {
-            alert(
-              "Por favor, preencha todos os campos antes de concluir o cadastro."
-            );
-          } else {
-            alert("Cadastro realizado com sucesso!");
-          }
         });
+    }
+}
 
-      document
-        .getElementById("concluido")
-        .addEventListener("click", function () {
-          const obj = document.getElementById("obj").value.trim();
-          const complemento = document
-            .getElementById("complemento")
-            .value.trim();
-          const estado = document.getElementById("estado").value.trim();
-          const piso = document.getElementById("Piso").value.trim();
-          const local = document.getElementById("Local").value.trim();
+//Pop-up
 
-          if (!obj || !complemento || !estado || !piso || !local) {
-            alert(
-              "Por favor, preencha todos os campos antes de concluir o cadastro."
-            );
-          } else {
-            window.location.href = "busca.html";
-          }
+        document.getElementById("concluido").addEventListener("click", function () {
+            const obj = document.getElementById("obj").value.trim();
+            const complemento = document.getElementById("complemento").value.trim();
+            const estado = document.getElementById("estado").value.trim();
+            const piso = document.getElementById("Piso").value.trim();
+            const local = document.getElementById("Local").value.trim();
+
+            if (!obj || !complemento || !estado || !piso || !local) {
+                alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
+            } else {
+                 alert("Cadastro realizado com sucesso!");
+                window.location.href = "busca.html"; 
+            }
         });
-      let codigoGerado = "";
+function fecharPopup() {
+    document.getElementById("popup").style.display = "none";
+}
 
-      async function gerarCodigo() {
-        const res = await fetch("http://localhost:3000/codigo");
-        const data = await res.json();
-        codigoGerado = data.codigo;
-        document.getElementById("codigo").textContent =
-          "Código: " + codigoGerado;
-        document.getElementById("codigoInput").value = codigoGerado;
-      }
+// Gerar Código
 
-      document.getElementById("form").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const payload = {
-          codigo: document.getElementById("codigoInput").value,
-          tipoObjeto: document.getElementById("tipoObjeto").value,
-          status: document.getElementById("status").value,
-          sala: document.getElementById("sala").value,
-          complemento: document.getElementById("complemento").value,
-        };
+let codigoGerado = "";
 
-        const res = await fetch("http://localhost:3000/salvar-codigo", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+async function gerarCodigo() {
+    const res = await fetch("http://localhost:3000/codigo");
+    const data = await res.json();
+    codigoGerado = data.codigo;
 
-        const data = await res.json();
-        alert(data.mensagem || data.erro);
-      });
+    document.getElementById("numero").textContent = codigoGerado;
+    document.getElementById("codigoInput").value = codigoGerado;
+}
 
-      gerarCodigo();
+document.getElementById("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      document.getElementById("form").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const payload = {
-          codigo: document.getElementById("codigoInput").value,
-          tipoObjeto: document.getElementById("obj").value,
-          status: document.getElementById("estado").value,
-          sala: document.getElementById("Local").value,
-          complemento: document.getElementById("complemento").value,
-        };
+    const payload = {
+        codigo: document.getElementById("codigoInput").value,
+        tipoObjeto: document.getElementById("obj").value,
+        status: document.getElementById("estado").value,
+        sala: document.getElementById("Local").value,
+        complemento: document.getElementById("complemento").value
+    };
 
-        const res = await fetch("http://localhost:3000/objetos/salvar-codigo", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+    const res = await fetch("http://localhost:3000/cadastrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
 
-        const data = await res.json();
-        alert(data.mensagem || data.erro);
-      });
+    const data = await res.json();
+    alert(data.mensagem || data.erro);
+});
+
+gerarCodigo();
+
     </script>
-  </body>
+
+</body>
 </html>
