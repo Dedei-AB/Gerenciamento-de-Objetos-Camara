@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerenciamento de Objetos Câmara</title>
   </head>
-  <link rel="stylesheet" href="buscar.css" />
+  <link rel="stylesheet" href="estilo.css" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -15,41 +15,47 @@
   </style>
 
   <body>
-    <div id="container">
-        <img class="logo" onclick="window.location.href='index.html' " src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
+    <div class="container">
+      <img
+        class="logo"
+        onclick="window.location.href='index.html' "
+        src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png"
+        alt=""
+      />
       <h1>Buscar Objetos</h1>
-      <div class="buscar">
-        <label for="buscar">
-          <i class="fas fa-search icone-lupa"></i>
-          <input
-            type="text"
-            id="buscar"
-            name="pesquisar"
-            placeholder="Pesquisar"
-          />
-        </label>
+
+      <div class="caixa-buscar">
+        <div class="buscar">
+          <label for="buscar">
+            <i class="fas fa-search icone-lupa"></i>
+            <input
+              type="text"
+              id="barra-pesquisa"
+              name="pesquisar"
+              placeholder="Pesquisar"
+            />
+          </label>
+        </div>
+        <table>
+          <tr>
+            <th>Nome</th>
+            <th>Complemento</th>
+            <th>Local</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            <td>Monitor</td>
+            <td>Monitor Dell</td>
+            <td>Plenário</td>
+            <td>Bom</td>
+          </tr>
+        </table>
       </div>
-      <table>
-        <tr>
-          <th>Nome</th>
-          <th>Complemento</th>
-          <th>Local</th>
-          <th>Status</th>
-        </tr>
-        <tr>
-          <td>Monitor</td>
-          <td>Monitor Dell</td>
-          <td>Plenário</td>
-          <td>Ótimo</td>
-        </tr>
-      </table>
     </div>
 
-
-<div id="resultado"></div>
-</body>
-<script>
-  fetch('/dados-busca')
-    .then(res => console.log(res.json()))
-</script>
+    <div id="resultado"></div>
+  </body>
+  <script>
+    fetch("/dados-busca").then((res) => console.log(res.json()));
+  </script>
 </html>
