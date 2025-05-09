@@ -61,7 +61,7 @@ h1{
 }
 a{
     font-size: 1rem ;
-    background-color: rgb(122, 117, 117);
+    background-color:rgb(var(--cor-do-fundo));
     color: #ffffff;
     font-family: "Noto Sans", sans-serif;
     font-optical-sizing: auto;
@@ -75,11 +75,11 @@ label{
 }
 
 
-img{
+.logo{
     width: 10rem;
     height: auto;
     margin-left: 10px;
-   
+    cursor: pointer;
 }
 
 #estadoObjeto{
@@ -139,7 +139,7 @@ form{
   .lugar:hover {
     background-color: #a8a8a8;
   }
-
+  
   .lugar.mostrar {
     display: block;
   }

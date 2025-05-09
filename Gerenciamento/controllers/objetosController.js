@@ -7,16 +7,10 @@ exports.getObjetos = (req, res) => {
   });
 };
 
-exports.getTipoObjeto = (req, res) => {
-  db.query(
-    "SELECT TipoObjeto_idTipoObjeto, codigo FROM bancodeobjetos.objeto;",
-    (err, results) => {
-      if (err) {
-        console.error("Erro na consulta SQL:", err); // Logando o erro no servidor
-        return res.status(500).json({ erro: "Erro ao buscar tipos de objeto" }); // Respondendo com erro
-      }
-      console.log("Resultados da consulta:", results); // Exibindo resultados no servidor
-      res.json(results); // Enviando resultados como JSON
-    }
-  );
+exports.buscarObjetos = (req, res) => {
+  const sql = 'SELECT * FROM objeto'; // ajuste conforme seu banco
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
 };

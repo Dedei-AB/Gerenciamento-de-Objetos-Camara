@@ -84,11 +84,13 @@ td {
   text-align: center;
 }
 
-img{
-  width: 2rem;
-  height: 2rem;
-  margin-left: 10px;
-  position: fixed;
-  top: 10px;
-  left: 10px;
+.logo{
+    width: 11rem;
+    height: auto;
+    margin-left: 10px;
+    position: fixed;
+    top: 50px;
+    margin-left: 10px;
+    cursor: pointer;
 }
+

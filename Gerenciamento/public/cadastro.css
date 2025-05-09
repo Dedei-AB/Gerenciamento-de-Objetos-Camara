@@ -90,13 +90,16 @@ option {
     border: none;
 }
 
-img{
+.logo{
     width: 11rem;
     height: auto;
     margin-left: 10px;
     position: fixed;
     top: 50px;
+    margin-left: 10px;
+    cursor: pointer;
 }
+
 .botao {
     margin-top: 1rem;
     padding: 0.5rem 1.5rem;
