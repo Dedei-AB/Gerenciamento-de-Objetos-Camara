@@ -5,34 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Objetos Câmara</title>
 </head>
-<link rel="stylesheet" href="atualizar.css">
+<link rel="stylesheet" href="estilo.css">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 </style>
 
 <body>
-    <div id="container">
-     <img class="logo" onclick="window.location.href='index.html' " src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
-      <div id="caixa">
-        <h1>Atualizar Objetos</h1>
+<div class="container">
+    <img class="logo" onclick="window.location.href='index.html' " src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
+    <div class="caixa-atualizar">
+      <h1>Atualizar Objetos</h1>
 
-        <form action="/at">
+      <form action="/at">
 
-            <label for="objetoID">ID/Nome do objeto</label>
-            <input type="text" id="objetoID" name="objetoID"  placeholder="ID ou nome do objeto:"> <br> <br>
+          <label class="descrição-input" for="objetoID">ID/Nome do objeto</label>
+          <input class="input-atualizar" type="text" id="objetoID" name="objetoID"  placeholder="ID ou nome do objeto:"> <br> <br>
 
-            <label for="estadoObjeto">Estado do objeto</label>
-            <select name="estado" id="estadoObjeto">
-                <option value="Ótimo">Ótimo</option>
-                <option value="Bom">Bom</option>
-                <option value="Ruim">Ruim</option>
-            </select><br><br>
+          <label class="descrição-input" for="estadoObjeto">Estado do objeto</label>
+          <select class="input-atualizar" name="estado" id="estadoObjeto">
+              <option value="Ótimo">Ótimo</option>
+              <option value="Bom">Bom</option>
+              <option value="Ruim">Ruim</option>
+          </select><br><br>
 
             
-            <div class="lugares">
-                <label for="piso">Selecione o Piso:</label>
+          <div class="lugares">
+                <label class="descrição-input" for="piso">Selecione o Piso:</label>
                 <br>
-                <select id="piso" onchange="filtrarLugares()">
+                <select class="input-atualizar" id="piso" onchange="filtrarLugares()">
                   <option value="">- Selecione -</option>
                   <option value="piso1">Piso 1</option>
                   <option value="piso2">Piso 2</option>
@@ -41,8 +41,8 @@
               </div><br>
           
               <div class="lugares">
-                <label for="busca">Digite o nome do lugar:</label>
-                <input type="text" id="busca" placeholder="Ex: Sala de reunião" oninput="filtrarLugares()">
+                <label class="descrição-input" for="busca">Digite o nome do lugar:</label>
+                <input class="input-atualizar" type="text" id="busca" placeholder="Ex: Sala de reunião" oninput="filtrarLugares()">
               </div>
           
               <div class="lugares" >
@@ -63,10 +63,9 @@
 
               <button class="atualizar" type="submit">Atualizar</button>
           </div>
-        
        </form>
-       
-
+    </div>
+</body>
        <script>
         function filtrarLugares() {
           const pisoSelecionado = document.getElementById("piso").value;
@@ -96,6 +95,4 @@
       }
 
       </script>
-</div>
-</body>
 </html>
