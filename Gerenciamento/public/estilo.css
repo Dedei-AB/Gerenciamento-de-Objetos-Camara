@@ -25,7 +25,7 @@
   box-sizing: border-box;
   font-family: "Noto-Sans-regular", sans-serif;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 h1 {
@@ -39,6 +39,7 @@ h1 {
 a {
   text-decoration: none;
   font-size: 1.1rem;
+  color: white;
 }
 
 .container {
@@ -81,6 +82,7 @@ button {
 }
 
 /* CSS da página busca.html: */
+
 #barra-pesquisa {
   width: 70vw;
   height: 2rem;
@@ -136,3 +138,110 @@ td {
 }
 
 /* CSS da página atualizar.html: */
+
+.atualizar {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  align-self: center;
+  width: 50%;
+}
+.atualizar:hover {
+  background-color: #53c257;
+  transition: 0.5s;
+}
+
+.caixa-atualizar {
+  margin-top: 30px;
+  width: auto;
+  max-height: auto;
+  padding: 2rem;
+  border: 1px solid rgb(73, 73, 73);
+  border-radius: 40px;
+  background-color: rgb(73, 73, 73);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#estadoObjeto {
+  width: 100%;
+  color: #000000;
+  border-radius: 30px;
+  background-color: rgb(255, 255, 255);
+  height: 2rem;
+  border: none;
+}
+
+#objetoID {
+  border-radius: 30px;
+  border: none;
+  width: 100%;
+  padding-left: 0.5rem;
+  height: 2rem;
+  background-color: rgb(255, 255, 255);
+}
+
+option {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(73, 73, 73);
+}
+
+select,
+input[type="text"] {
+  color: #242222;
+  border-radius: 30px;
+  border: none;
+  width: 100%;
+  padding-left: 0.5rem;
+  height: 2rem;
+  background-color: rgb(255, 255, 255);
+  padding: 8px;
+  font-size: 16px;
+}
+
+label {
+  background-color: rgb(73, 73, 73);
+  color: rgb(255, 255, 255);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.lugar {
+  display: none;
+  padding: 10px;
+  background-color: #f1f1f1;
+  margin: 5px 0;
+  border-radius: 20px;
+  height: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.lugar:hover {
+  background-color: #a8a8a8;
+}
+
+.lugar.mostrar {
+  display: block;
+}
+
+.lugares {
+  background-color: rgb(73, 73, 73);
+  border-radius: 30px;
+  width: 100%;
+  margin-top: 20px;
+}
