@@ -141,16 +141,17 @@ td {
 
 .atualizar {
   margin-top: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.4rem 1rem;
   border: none;
   border-radius: 30px;
   background-color: #ffffff;
   color: #000000;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 1.0s ease;
   align-self: center;
-  width: 50%;
+  width: 30%;
+  height: 2rem;
 }
 .atualizar:hover {
   background-color: #53c257;
@@ -172,7 +173,7 @@ td {
 }
 
 #estadoObjeto {
-  width: 100%;
+  width: 70%;
   color: #000000;
   border-radius: 30px;
   background-color: rgb(255, 255, 255);
@@ -183,7 +184,7 @@ td {
 #objetoID {
   border-radius: 30px;
   border: none;
-  width: 100%;
+  width: 70%;
   padding-left: 0.5rem;
   height: 2rem;
   background-color: rgb(255, 255, 255);
@@ -205,12 +206,12 @@ input[type="text"] {
   color: #242222;
   border-radius: 30px;
   border: none;
-  width: 100%;
+  width: 70%;
   padding-left: 0.5rem;
   height: 2rem;
   background-color: rgb(255, 255, 255);
   padding: 8px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 label {
@@ -221,11 +222,11 @@ label {
 
 .lugar {
   display: none;
-  padding: 10px;
+  padding: 6px 10px;
   background-color: #f1f1f1;
-  margin: 5px 0;
-  border-radius: 20px;
-  height: 2rem;
+  margin: 3px 0;
+  border-radius: 15px;
+  height: 1.6rem;
   cursor: pointer;
   color: #000000;
   transition: background-color 0.3s;
@@ -243,5 +244,5 @@ label {
   background-color: rgb(73, 73, 73);
   border-radius: 30px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
 }
