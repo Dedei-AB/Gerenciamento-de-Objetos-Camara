@@ -1,43 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Objetos Câmara</title>
-</head>
-<link rel="stylesheet" href="estilo.css">
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-</style>
-
-<body>
-<div class="container">
-    <img class="logo" onclick="window.location.href='index.html' " src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
-    <div class="caixa-atualizar">
-      <h1>Atualizar Objetos</h1>
-
-      <form action="/at">
-
-          <label class="descrição-input" for="objetoID">ID/Nome do objeto</label>
-          <input class="input-atualizar" type="text" id="objetoID" name="objetoID"  placeholder="ID ou nome do objeto:">
-           <button class="botaoBuscar">Buscar</button>
-          <br> <br>
+const id = document.getElementById("objetoID")
+const informacoes = getElementById("informacoes")
 
 
-        <div id="informacoes">
+async function pegarObjetos() {
+    const resposta = await fetch("/dados-buscar")
+    const dados = await resposta.json()
+    console.log(dados)
+    return dados
+}
+
+pegarObjetos()
+
+const atualizarObjeto = async() =>{
+    const dados = await pegarObjetos()
+    dados.forEach(element => {
+        if(element.codigo == id){
+            informacoes.innerHTML = `
           <label class="descrição-input" for="estadoObjeto">Estado do objeto</label>
           <select class="input-atualizar" name="estado" id="estadoObjeto">
-              <option value="Ótimo">Ótimo</option>
-              <option value="Bom">Bom</option>
+              <option value="${element.Nome}">Ótimo</option>
+              <option value="${element.Nome}">Bom</option>
               <option value="Ruim">Ruim</option>
-          </select>
-          <br><br>
-            
+          </select><br><br>
+
           <div class="lugares">
                 <label class="descrição-input" for="piso">Selecione o Piso:</label>
                 <br>
                 <select class="input-atualizar" id="piso" onchange="filtrarLugares()">
-                  <option value="">- Selecione -</option>
+                  <option value="">${element.ome}</option>
                   <option value="piso1">Piso 1</option>
                   <option value="piso2">Piso 2</option>
                   <option value="Garagem">Garagem</option>
@@ -66,12 +56,8 @@
 
 
               <button class="atualizar" type="submit">Atualizar</button>
-
-        </div>
-  
-          </div>
-       </form>
-    </div>
-</body>
-   <script type="module" src="./js/atualizar.js"></script>
-</html>
+`
+        }
+        
+    });
+}
