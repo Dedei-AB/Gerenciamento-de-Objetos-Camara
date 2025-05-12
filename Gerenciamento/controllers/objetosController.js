@@ -20,13 +20,11 @@ and idPiso=Piso_idPiso;`;
   });
 };
 
+
 exports.cadastrarObjeto = (req, res) => {
   const { codigo, tipoObjeto, complemento, status, sala } = req.body;
 
-  const sql = `
-    INSERT INTO objetos (codigo, tipoObjeto, complemento, status, sala)
-    VALUES (?, ?, ?, ?, ?)
-  `;
+  const sql =   "INSERT INTO objeto (codigo, TipoObjeto_idTipoObjeto, complemento, Status_idStatus, Sala_idSala) VALUES (?, ?, ?, ?, ?)";
 
   db.query(sql, [codigo, tipoObjeto, complemento, status, sala], (err, result) => {
     if (err) {
@@ -38,6 +36,13 @@ exports.cadastrarObjeto = (req, res) => {
   });
 };
 exports.gerarCodigo = (req, res) => {
-  const codigo = Math.floor(100000 + Math.random() * 900000);
+  const codigo = Math.floor(1000 + Math.random() * 9000); // entre 1000 e 9999
   res.json({ codigo });
 };
+
+exports.status = (req,res) => {
+  const sql = "SELECT * FROM bancodeobjetos.status;"
+}
+exports.tipoObjeto = (req,res) => {
+  const sql = "SELECT * FROM bancodeobjetos.tipoobjeto;"
+}

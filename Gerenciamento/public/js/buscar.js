@@ -18,7 +18,6 @@ const nomeObjeto = async () => {
             </tr>`;
   });
 };
-
 nomeObjeto();
 
 // Complemento: "monitor"
