@@ -1,5 +1,6 @@
 const id = document.getElementById("objetoID")
-const informacoes = getElementById("informacoes")
+const informacoes = document.getElementById("informacoes")
+const buscar =  document.getElementById("botaoBuscar")
 
 
 async function pegarObjetos() {
@@ -13,7 +14,7 @@ pegarObjetos()
 
 const atualizarObjeto = async() =>{
     const dados = await pegarObjetos()
-    dados.forEach(element => {
+    buscar.onclick = dados.forEach(element => {
         if(element.codigo == id){
             informacoes.innerHTML = `
           <label class="descrição-input" for="estadoObjeto">Estado do objeto</label>
@@ -27,7 +28,7 @@ const atualizarObjeto = async() =>{
                 <label class="descrição-input" for="piso">Selecione o Piso:</label>
                 <br>
                 <select class="input-atualizar" id="piso" onchange="filtrarLugares()">
-                  <option value="">${element.ome}</option>
+                  <option value="">${element.NomePiso}</option>
                   <option value="piso1">Piso 1</option>
                   <option value="piso2">Piso 2</option>
                   <option value="Garagem">Garagem</option>

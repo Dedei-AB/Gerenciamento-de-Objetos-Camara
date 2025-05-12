@@ -46,3 +46,9 @@ exports.status = (req,res) => {
 exports.tipoObjeto = (req,res) => {
   const sql = "SELECT * FROM bancodeobjetos.tipoobjeto;"
 }
+
+exports.atualizarObjeto = (req,res) => {
+  const sql = `SELECT codigo, Nome,  NomePiso, NomeTipoSala
+FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.piso, bancodeobjetos.sala, bancodeobjetos.tiposala
+where idStatus = Status_idStatus and Piso_idPiso = idPiso and idSala = Sala_idSala and TipoSala_idTipoSala = idTipoSala;`
+}
