@@ -11,7 +11,7 @@ const nomeObjeto = async () => {
   dados.forEach((element) => {
     tabela.innerHTML += `<tr>
               <td>${element.codigo}</td>
-              <td>${element.Complemento}</td>
+              <td>${element.NomeDoTipo}</td>
               <td>${element.Complemento}</td>
               <td>${element.NomeSala}</td>
               <td>${element.Nome}</td>
