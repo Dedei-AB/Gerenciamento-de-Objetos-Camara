@@ -10,52 +10,51 @@
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 </style>
 <body>
-    <div class="container">
-        <img class="logo" onclick="window.location.href='index.html' " src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
-        <div id="caixa">
-        <h1>Cadastrar Objeto</h1>
+    <div id="container-cadastro">
+        <img class="logo-cadastro" onclick="window.location.href='index.html' " src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
+        <div id="caixa-cadastro">
+        <h1 id="titulo">Cadastrar Objeto</h1>
         <div style="width: 58%; height: 2px; background-color: white;"></div>
-        <h2>Número do Objeto <div id="numero"></div></h2>
-        <div class="botoes">
-            <form id="form">
+        <div class="botoes-cadastro">
+            <form id="form-cadastro">
                 <!-- Código gerado automaticamente -->
-                <div id="codigo">Código: <span id="numero"></span></div>
-                <input type="hidden" id="codigoInput" name="codigo">
+                <h2 id="codigo-cadastro">Código: <span id="numero"></span></h2>
+                <input type="hidden" id="codigoInput-cadastro" name="codigo">
 
                 <!-- Tipo do objeto -->
-                <input type="text" placeholder="Monitor, Impressora..." id="obj" required>
-                <label for="obj">Objeto</label>
+                <input class="input-cadastro" type="text" placeholder="Monitor, Impressora..." id="obj-cadastro" required>
+                <label class="label-cadastro"  for="obj">Objeto</label>
 
                 <!-- Complemento -->
-                <input type="text" placeholder="Cor branca, Positivo..." id="complemento" required>
-                <label for="complemento">Complemento</label>
+                <input  class="input-cadastro" type="text" placeholder="Cor branca, Positivo..." id="complemento-cadastro" required>
+                <label class="label-cadastro"  for="complemento">Complemento</label>
 
                 <!-- Estado -->
-                <select id="estado" required>
-                    <option value="">Selecionar Estado</option>
+                <select id="estado-cadastro" required>
+                    <option value="">Selecionar</option>
                     <option value="otimo">Ótimo</option>
                     <option value="utilizavel">Utilizável</option>
                     <option value="ruim">Ruim</option>
                 </select>
-                <label for="estado">Estado do Objeto</label>
-
+                <label class="label-cadastro" for="estado">Estado do Objeto</label>
+                <br>
                 <!-- Piso -->
-                <select id="Piso" onchange="atualizarLocais()" required>
-                    <option value="">Selecionar Piso</option>
+                <select id="Piso-cadastro" onchange="atualizarLocais()" required>
+                    <option value="">Selecionar</option>
                     <option value="piso1">Piso 1</option>
                     <option value="piso2">Piso 2</option>
                     <option value="garagem">Garagem</option>
                 </select>
-                <label for="Piso">Piso</label>
+                <label class="label-cadastro"  for="Piso">Piso</label>
 
                 <!-- Local (sala) -->
-                <select id="Local" required>
-                    <option value="">Selecionar Local</option>
+                <select id="Local-cadastro" required>
+                    <option value="">Selecionar</option>
                 </select>
-                <label for="Local">Local</label>
+                <label class="label-cadastro"  for="Local">Local</label>
 
                 <!-- Botão de envio -->
-                <button type="button" id="concluido">Concluído</button>
+                <button type="button" id="concluido-cadastro">Concluído</button>
             </form>
         </div>
         
