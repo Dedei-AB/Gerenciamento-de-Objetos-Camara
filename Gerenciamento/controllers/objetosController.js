@@ -37,3 +37,7 @@ exports.cadastrarObjeto = (req, res) => {
     res.status(200).json({ mensagem: 'Objeto cadastrado com sucesso' });
   });
 };
+exports.gerarCodigo = (req, res) => {
+  const codigo = Math.floor(100000 + Math.random() * 900000);
+  res.json({ codigo });
+};

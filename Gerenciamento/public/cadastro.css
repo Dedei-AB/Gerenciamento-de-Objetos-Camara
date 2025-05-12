@@ -99,7 +99,7 @@ option {
   color: #000000;
   font-family: "Noto Sans", sans-serif;
 }
-#Piso-cadastro{
+#piso-cadastro{
    background-color: rbg(var(--cor-do-fundo));
   width: 5vw;
   height: 2rem;
@@ -112,7 +112,7 @@ option {
   font-family: "Noto Sans", sans-serif;
 }
 
-#Local-cadastro {
+#local-cadastro {
   background-color: rbg(var(--cor-do-fundo));
   width: 5vw;
   height: 2rem;

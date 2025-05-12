@@ -4,6 +4,6 @@ const connection = require("../config/db"); // Certifique-se de ter a conexão c
 const controllers = require("../controllers/objetosController");
 
 router.get("/dados-buscar", controllers.buscarObjetos);
-router.get("/cadastrar", controllers.cadastrarObjeto);
+router.post("/cadastrar", controllers.cadastrarObjeto);
 
 module.exports = router;
