@@ -1,5 +1,6 @@
 const barraPesquisa = document.getElementById("barra-pesquisa");
 const corpoTabela = document.getElementById("corpo-tabela");
+const filtro = document.getElementById("filtrar-por");
 
 async function pegarDados() {
   const res = await fetch("/dados-buscar");
@@ -23,13 +24,16 @@ async function mostrarObjetos() {
 }
 mostrarObjetos();
 
-async function pesquisar(input) {
+async function pesquisar(input, tipoFiltro) {
   corpoTabela.innerHTML = ``;
   const dados = await pegarDados();
-  const termo = input.toLowerCase();
-  const filtrados = dados.filter((item) =>
-    item.NomeDoTipo.toLowerCase().includes(termo)
-  );
+  const termo = input.toString().toLowerCase();
+  const filtrados = dados.filter((item) => {
+    const valor = item[tipoFiltro];
+    if (valor === null || valor === undefined) return false;
+    return valor.toString().toLowerCase().includes(termo);
+  });
+
   filtrados.forEach((valor) => {
     let novaLista = document.createElement("tr");
     novaLista.innerHTML += `
@@ -41,8 +45,12 @@ async function pesquisar(input) {
     corpoTabela.appendChild(novaLista);
   });
   console.log("Dados da pesquisa:", filtrados);
+  console.log("valor da barra", filtro.value);
 }
-barraPesquisa.addEventListener("input", () => pesquisar(barraPesquisa.value));
+
+barraPesquisa.addEventListener("input", () =>
+  pesquisar(barraPesquisa.value, filtro.value)
+);
 
 // 0: {codigo: 1234, NomeDoTipo: 'Computador', Nome: 'Ótimo', NomeSala: 'Sub. Macedo', Complemento: null}
 // 1: {codigo: 1111, NomeDoTipo: 'Impressora', Nome: 'Ótimo', NomeSala: 'Copa', Complemento: null}

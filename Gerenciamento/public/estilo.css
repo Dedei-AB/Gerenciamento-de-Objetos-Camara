@@ -96,8 +96,31 @@ button {
 }
 
 .icone-lupa {
-  font-size: 16px;
+  background-color: var(--cor-do-fundo);
   color: white;
+}
+
+.filtrar {
+  height: 3rem;
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+}
+
+#filtrar-por {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  height: auto;
+  width: auto;
+  margin-left: 1rem;
+  border: none;
+  font-size: 1rem;
+  text-align-last: center;
 }
 
 table {
@@ -146,6 +169,10 @@ td {
   align-items: center;
   justify-content: center;
   background-color: var(--cor-do-fundo);
+}
+
+.buscar {
+  height: auto;
 }
 
 /* CSS da página atualizar.html: */
@@ -237,9 +264,10 @@ input[type="text"] {
 }
 
 label {
-  background-color: rgb(73, 73, 73);
+  background-color: var(--cor-do-fundo);
   color: rgb(255, 255, 255);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Noto-Sans-regular", "Arial Narrow", Arial, sans-serif;
+  font-size: 1rem;
 }
 
 .lugar {
