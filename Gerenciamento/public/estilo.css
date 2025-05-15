@@ -101,30 +101,41 @@ button {
 }
 
 table {
+  height: auto;
   width: 70vw;
   background-color: var(--cinza-claro-2);
   border-collapse: separate;
-  border-spacing: 0;
   border: 2px solid var(--cinza-claro-2);
   border-radius: 10px;
-  overflow: hidden;
 }
 
-tr {
+.tabela-objetos {
+  width: 72vw;
+  overflow-y: auto;
+  overflow-x: auto;
+  max-height: 60vh;
+}
+
+thead tr {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
   background-color: var(--cinza-claro-2);
-  border-radius: 10px;
   border: 1px solid black;
 }
 
 th {
   background-color: var(--cinza-claro-2);
   text-align: center;
+  height: 2rem;
 }
 
 td {
   background-color: var(--cinza-claro-3);
   text-align: center;
   color: var(--cor-do-fundo);
+  height: 2rem;
 }
 
 .caixa-buscar {
@@ -148,14 +159,14 @@ td {
   color: #000000;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 1.0s ease;
+  transition: background-color 1s ease;
   align-self: center;
   width: auto;
   height: 2rem;
 }
 .atualizar:hover {
   background-color: #53c257;
-  transition: 1.0s;
+  transition: 1s;
 }
 
 .caixa-atualizar {
@@ -190,7 +201,7 @@ td {
   background-color: rgb(255, 255, 255);
 }
 
-#botaoBuscar{
+#botaoBuscar {
   padding: 0.4rem 1rem;
   border: none;
   border-radius: 30px;
@@ -200,7 +211,6 @@ td {
   width: auto;
   height: 2rem;
 }
-
 
 option {
   color: #000000;
@@ -264,4 +274,3 @@ label {
   justify-content: center;
   flex-direction: column;
 }
-

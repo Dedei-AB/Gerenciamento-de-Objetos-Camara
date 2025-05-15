@@ -27,7 +27,7 @@
       <div class="caixa-buscar">
         <div class="buscar">
           <label for="buscar">
-          <i class="fas fa-search icone-lupa"></i>
+            <i class="fas fa-search icone-lupa"></i>
             <input
               type="text"
               id="barra-pesquisa"
@@ -37,15 +37,20 @@
           </label>
         </div>
 
-        <table id="tabela">
-          <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Complemento</th>
-            <th>Local</th>
-            <th>Status</th>
-          </tr>
-        </table>
+        <div class="tabela-objetos">
+          <table>
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Complemento</th>
+                <th>Local</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="corpo-tabela"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
