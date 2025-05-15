@@ -6,5 +6,6 @@ const controllers = require("../controllers/objetosController");
 router.get("/dados-buscar", controllers.buscarObjetos);
 router.post("/cadastrar", controllers.cadastrarObjeto);
 router.get("/codigo", controllers.gerarCodigo);
+router.get("/dados-buscar/:id", controllers.buscarObjetoAtualizar);
 
 module.exports = router;
