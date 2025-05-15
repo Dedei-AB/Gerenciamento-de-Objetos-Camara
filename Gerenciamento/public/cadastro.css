@@ -80,12 +80,12 @@ option {
 }
 
 .logo-cadastro {
+  
   width: 11rem;
   height: auto;
+  margin-bottom: 20px;
   margin-left: 10px;
-  position: fixed;
-  top: 50px;
-  margin-left: 10px;
+  top: 30px;
   cursor: pointer;
 }
 #estado-cadastro{
@@ -152,4 +152,7 @@ option {
 
 #form-cadastro{
   background-color: var(--cinza);
+}
+span{
+  background-color: rgb(73, 73, 73);
 }
