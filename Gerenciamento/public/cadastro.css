@@ -1,4 +1,3 @@
-
 :root {
   --cor-do-fundo: 37, 37, 37;
 }
@@ -9,7 +8,6 @@
   box-sizing: border-box;
   background-color: rgb(var(--cor-do-fundo));
 }
-
 
 #titulo {
   font-size: 2rem;
@@ -43,12 +41,10 @@
   justify-content: center;
 }
 
-
 .botoes-cadastro {
   margin: 1rem;
   background-color: rgb(73, 73, 73);
 }
-
 
 .input-cadastro {
   padding-left: 1rem;
@@ -69,7 +65,19 @@
 }
 
 #obj-cadastro {
-  width: 17vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 5px;
+  text-align: center;
+  height: auto;
+  width: auto;
+  margin-left: 1rem;
+  border: none;
+  font-size: 1rem;
+  text-align-last: center;
 }
 
 option {
@@ -80,7 +88,6 @@ option {
 }
 
 .logo-cadastro {
-  
   width: 11rem;
   height: auto;
   margin-bottom: 20px;
@@ -88,7 +95,7 @@ option {
   top: 30px;
   cursor: pointer;
 }
-#estado-cadastro{
+#estado-cadastro {
   width: 5vw;
   height: 2rem;
   margin: 10px;
@@ -99,8 +106,8 @@ option {
   color: #000000;
   font-family: "Noto Sans", sans-serif;
 }
-#piso-cadastro{
-   background-color: rbg(var(--cor-do-fundo));
+#piso-cadastro {
+  background-color: rbg(var(--cor-do-fundo));
   width: 5vw;
   height: 2rem;
   margin: 10px;
@@ -150,9 +157,9 @@ option {
   text-align: center;
 }
 
-#form-cadastro{
+#form-cadastro {
   background-color: var(--cinza);
 }
-span{
+span {
   background-color: rgb(73, 73, 73);
 }

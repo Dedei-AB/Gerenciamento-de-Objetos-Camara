@@ -1,157 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cadastro de Objeto</title>
-    <link rel="stylesheet" href="cadastro.css">
-    <script type="module" defer src="js/cadastro.js"></script>
+    <link rel="stylesheet" href="cadastro.css" />
+    <script src="js/cadastro.js" defer></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container-cadastro">
-        <img class="logo-cadastro" onclick="window.location.href='index.html'" src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png" alt="">
-        <div id="caixa-cadastro">
-            <h1 id="titulo">Cadastrar Objeto</h1>
-            <div style="width: 58%; height: 2px; background-color: white;"></div>
-            <div class="botoes-cadastro">
-                <form id="form-cadastro">
-                    <!-- Código -->
-                    <h2 id="codigo-cadastro">Código: <span id="numero"></span></h2>
-                    <input type="hidden" id="codigoInput-cadastro" name="codigo">
+      <img
+        class="logo-cadastro"
+        onclick="window.location.href='index.html'"
+        src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png"
+        alt=""
+      />
+      <div id="caixa-cadastro">
+        <h1 id="titulo">Cadastrar Objeto</h1>
+        <div style="width: 58%; height: 2px; background-color: white"></div>
+        <div class="botoes-cadastro">
+          <form id="form-cadastro">
+            <!-- Código -->
+            <h2 id="codigo-cadastro">Código: <span id="numero"></span></h2>
+            <input type="hidden" id="codigoInput-cadastro" name="codigo" />
 
-                    <!-- Tipo -->
-                    <input class="input-cadastro" type="text" placeholder="Monitor, Impressora..." id="obj-cadastro" required>
-                    <label class="label-cadastro" for="obj-cadastro">Objeto</label>
+            <!-- Tipo -->
+            <select id="obj-cadastro">
+              <option value="1">Bens Móveis</option>
+              <option value="2">Bens Imóveis</option>
+            </select>
+            <label class="label-cadastro" for="obj-cadastro">Tipo Objeto</label>
 
-                    <!-- Complemento -->
-                    <input class="input-cadastro" type="text" placeholder="Cor branca, Positivo..." id="complemento-cadastro" required>
-                    <label class="label-cadastro" for="complemento-cadastro">Complemento</label>
+            <!-- Complemento -->
+            <input
+              class="input-cadastro"
+              type="text"
+              placeholder="Cor branca, Positivo..."
+              id="complemento-cadastro"
+              required
+            />
+            <label class="label-cadastro" for="complemento-cadastro"
+              >Complemento</label
+            >
 
-                    <!-- Estado -->
-                    <select id="estado-cadastro" required>
-                        <option value="">Selecionar</option>
-                        <option value="otimo">Bom</option>
-                        <option value="utilizavel">Utilizável</option>
-                        <option value="ruim">Ruim</option>
-                    </select>
-                    <label class="label-cadastro" for="estado-cadastro">Estado do Objeto</label>
-<br>
-                    <!-- Piso -->
-                    <select id="piso-cadastro" onchange="atualizarLocais()" required>
-                        <option value="">Selecionar</option>
-                        <option value="piso1">Piso 1</option>
-                        <option value="piso2">Piso 2</option>
-                        <option value="garagem">Garagem</option>
-                    </select>
-                    <label class="label-cadastro" for="piso-cadastro">Piso</label>
+            <!-- Estado -->
+            <select id="estado-cadastro" required>
+              <option value="">Selecionar</option>
+              <option value="1">Bom</option>
+              <option value="2">Utilizável</option>
+              <option value="3">Ruim</option>
+            </select>
+            <label class="label-cadastro" for="estado-cadastro"
+              >Estado do Objeto</label
+            >
+            <br />
+            <!-- Piso -->
+            <select id="piso-cadastro" required>
+              <option value="">Selecionar</option>
+              <option value="1">Piso 1</option>
+              <option value="2">Piso 2</option>
+              <option value="3">Garagem</option>
+            </select>
+            <label class="label-cadastro" for="piso-cadastro">Piso</label>
 
-                    <!-- Local -->
-                    <select id="local-cadastro" required>
-                        <option value="">Selecionar</option>
-                    </select>
-                    <label class="label-cadastro" for="local-cadastro">Local</label>
+            <!-- Local -->
+            <select id="local-cadastro" required>
+              <option value="">Selecionar</option>
+            </select>
+            <label class="label-cadastro" for="local-cadastro">Local</label>
 
-                    <!-- Botão -->
-                    <button type="button" id="concluido-cadastro">Concluído</button>
-                </form>
-            </div>
+            <!-- Botão -->
+            <button type="button" id="concluido-cadastro">Concluído</button>
+          </form>
         </div>
+      </div>
     </div>
-
-    <script>
-        //Pop-up
-
-    document.getElementById("concluido-cadastro").addEventListener("click", function () {
-    const obj = document.getElementById("obj-cadastro").value.trim();
-    const complemento = document.getElementById("complemento-cadastro").value.trim();
-    const estado = document.getElementById("estado-cadastro").value.trim();
-    const piso = document.getElementById("piso-cadastro").value.trim();
-    const local = document.getElementById("local-cadastro").value.trim();
-
-    if (!obj || !complemento || !estado || !piso || !local) {
-        alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
-    } else {
-        alert("Cadastro realizado com sucesso!");
-        window.location.href = "buscar.html"; 
-    }
-});
-
-
-
-        // Mapas de locais
-        const locaisPorPiso = {
-            piso1: ["Gabinete", "Plenário"],
-            piso2: ["COTEC"],
-            garagem: ["Copa"]
-        };
-
-        function atualizarLocais() {
-            const pisoSelecionado = document.getElementById("piso-cadastro").value;
-            const localSelect = document.getElementById("local-cadastro");
-
-            localSelect.innerHTML = '<option value="">Selecionar</option>';
-
-            if (locaisPorPiso[pisoSelecionado]) {
-                locaisPorPiso[pisoSelecionado].forEach(local => {
-                    const option = document.createElement("option");
-                    option.value = local;
-                    option.textContent = local;
-                    localSelect.appendChild(option);
-                });
-            }
-        }
-
-        // Geração de código
-        let codigoGerado = "";
-
-        async function gerarCodigo() {
-            const res = await fetch("http://localhost:3000/codigo");
-            const data = await res.json();
-            codigoGerado = data.codigo;
-
-            document.getElementById("numero").textContent = codigoGerado;
-            document.getElementById("codigoInput-cadastro").value = codigoGerado;
-        }
-
-        // Envio do formulário
-        document.getElementById("concluido-cadastro").addEventListener("click", async function () {
-            const obj = document.getElementById("obj-cadastro").value.trim();
-            const complemento = document.getElementById("complemento-cadastro").value.trim();
-            const estado = document.getElementById("estado-cadastro").value.trim();
-            const piso = document.getElementById("piso-cadastro").value.trim();
-            const local = document.getElementById("local-cadastro").value.trim();
-
-            if (!obj || !complemento || !estado || !piso || !local) {
-                alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
-                return;
-            }
-
-            const payload = {
-                codigo: document.getElementById("codigoInput-cadastro").value,
-                tipoObjeto: obj,
-                status: estado,
-                sala: local,
-                complemento: complemento
-            };
-
-            const res = await fetch("http://localhost:3000/cadastrar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-
-            const data = await res.json();
-            alert(data.mensagem || data.erro);
-            if (!data.erro) {
-                window.location.href = "busca.html";
-            }
-        });
-
-        // Iniciar com código
-        gerarCodigo();
-    </script>
-</body>
+  </body>
 </html>
