@@ -22,12 +22,12 @@
         <h1 id="titulo">Cadastrar Objeto</h1>
         <div style="width: 58%; height: 2px; background-color: white"></div>
         <div class="botoes-cadastro">
-          <form id="form-cadastro">
+          <form id="for-cadastro">
             <!-- Código -->
             <h2 id="codigo-cadastro">Código: <span id="numero"></span></h2>
             <input type="hidden" id="codigoInput-cadastro" name="codigo" />
 
-            <div>
+            <div class="linha-cadastro">
               <!-- Tipo -->
               <select id="obj-cadastro">
                 <option value="1">Bens Móveis</option>
@@ -38,28 +38,32 @@
               >
             </div>
             <br />
-            <!-- Complemento -->
-            <input
-              id="input-cadastro"
-              type="text"
-              placeholder="Cor branca, Positivo..."
-              id="complemento-cadastro"
-              required
-            />
-            <label class="label-cadastro" for="complemento-cadastro"
-              >Complemento</label
-            >
-
-            <!-- Estado -->
-            <select id="estado-cadastro" required>
-              <option value="">Selecionar</option>
-              <option value="1">Bom</option>
-              <option value="2">Utilizável</option>
-              <option value="3">Ruim</option>
-            </select>
-            <label class="label-cadastro" for="estado-cadastro"
-              >Estado do Objeto</label
-            >
+            <div class="linha-cadastro">
+              <!-- Complemento -->
+              <input
+                id="in-cadastro"
+                type="text"
+                placeholder="Monitor Dell 1920 x 1080..."
+                id="complemento-cadastro"
+                required
+              />
+              <label class="label-cadastro" for="complemento-cadastro"
+                >Complemento</label
+              >
+            </div>
+            <br />
+            <div class="linha-cadastro">
+              <!-- Estado -->
+              <select id="estado-cadastro" required>
+                <option value="">Selecionar</option>
+                <option value="1">Bom</option>
+                <option value="2">Utilizável</option>
+                <option value="3">Ruim</option>
+              </select>
+              <label class="label-cadastro" for="estado-cadastro"
+                >Estado do Objeto</label
+              >
+            </div>
             <br />
             <!-- Piso -->
             <select id="piso-cadastro" required>
