@@ -16,6 +16,29 @@
     <div class="caixa-atualizar">
       <h1>Atualizar Objetos</h1>
 
+      <div class="caixa-buscar">
+        <div class="buscar">
+          <i class="fas fa-search icone-lupa"></i>
+          <input
+            type="text"
+            id="barra-pesquisa"
+            name="pesquisar"
+            placeholder="Pesquisar:"
+          />
+        </div>
+        <div class="filtrar">
+          <label for="buscar-por">Buscar por:</label>
+          <select name="tfiltros" id="filtrar-por">
+            <option class="opcao-filtrar" value="codigo">Código</option>
+            <option class="opcao-filtrar" value="NomeDoTipo">Nome</option>
+            <option class="opcao-filtrar" value="Complemento">
+              Complemento
+            </option>
+            <option class="opcao-filtrar" value="NomeSala">Local</option>
+            <option class="opcao-filtrar" value="Nome">Status</option>
+          </select>
+        </div>
+
       <form action="/at">
 
           <label class="descrição-input" for="objetoID">ID/Nome do objeto</label>
