@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cadastro de Objeto</title>
-    <link rel="stylesheet" href="cadastro.css" />
+    <link rel="stylesheet" href="estilo.css" />
     <script src="js/cadastro.js" defer></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
@@ -27,16 +27,20 @@
             <h2 id="codigo-cadastro">Código: <span id="numero"></span></h2>
             <input type="hidden" id="codigoInput-cadastro" name="codigo" />
 
-            <!-- Tipo -->
-            <select id="obj-cadastro">
-              <option value="1">Bens Móveis</option>
-              <option value="2">Bens Imóveis</option>
-            </select>
-            <label class="label-cadastro" for="obj-cadastro">Tipo Objeto</label>
-
+            <div>
+              <!-- Tipo -->
+              <select id="obj-cadastro">
+                <option value="1">Bens Móveis</option>
+                <option value="2">Bens Imóveis</option>
+              </select>
+              <label class="label-cadastro" for="obj-cadastro"
+                >Tipo Objeto</label
+              >
+            </div>
+            <br />
             <!-- Complemento -->
             <input
-              class="input-cadastro"
+              id="input-cadastro"
               type="text"
               placeholder="Cor branca, Positivo..."
               id="complemento-cadastro"

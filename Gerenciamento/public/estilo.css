@@ -177,6 +177,26 @@ td {
 
 /* CSS da página atualizar.html: */
 
+#lapis {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--cinza-claro-3);
+  height: 3rem;
+  width: 3rem;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px black;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+#lapis:hover {
+  transform: translateY(-5px);
+  transition: ease 0.3s;
+}
+
 .atualizar {
   margin-top: 1rem;
   padding: 0.4rem 1rem;
@@ -244,9 +264,6 @@ option {
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: rgb(73, 73, 73);
 }
 
@@ -294,11 +311,176 @@ label {
 
 .lugares {
   display: flex;
-  background-color: rgb(73, 73, 73);
+  background-color: var(--cinza);
   border-radius: 30px;
   width: 100%;
   margin-top: 10px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+/* CSS da página cadastrar */
+
+#titulo {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: "Noto Sans", sans-serif;
+  background-color: var(--cinza);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#container-cadastro {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--cor-do-fundo);
+}
+
+#caixa-cadastro {
+  width: 35vw;
+  height: auto;
+  border: var(--cinza) 1px solid;
+  border-radius: 10px;
+  background-color: var(--cinza);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.botoes-cadastro {
+  margin: 1rem;
+  background-color: var(--cinza);
+}
+
+#input-cadastro {
+  padding-left: 1rem;
+  width: 20vw;
+  height: 2rem;
+  margin: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: var(--cinza-claro-3);
+  color: #000000;
+}
+
+.label-cadastro {
+  padding-left: 20px;
+  background-color: var(--cinza);
+  color: #ffffff;
+  font-family: "Noto Sans", sans-serif;
+  margin-right: 50px;
+}
+
+#obj-cadastro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 5px;
+  text-align: center;
+  height: auto;
+  width: auto;
+  margin-left: 1rem;
+  border: none;
+  font-size: 1rem;
+  text-align-last: center;
+}
+
+option {
+  background-color: var(--cor-do-fundo);
+  color: #ffffff;
+  font-family: "Noto Sans", sans-serif;
+  border: none;
+}
+
+.logo-cadastro {
+  width: 11rem;
+  height: auto;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  top: 30px;
+  cursor: pointer;
+}
+#estado-cadastro {
+  width: 5vw;
+  height: 2rem;
+  margin: 10px;
+  border-radius: 50px;
+  border: none;
+  padding-left: 5px;
+  background-color: white;
+  color: #000000;
+  font-family: "Noto Sans", sans-serif;
+}
+#piso-cadastro {
+  background-color: rbg(var(--cor-do-fundo));
+  width: 5vw;
+  height: 2rem;
+  margin: 10px;
+  border-radius: 50px;
+  border: none;
+  padding-left: 5px;
+  background-color: white;
+  color: #000000;
+  font-family: "Noto Sans", sans-serif;
+}
+
+#local-cadastro {
+  background-color: var(--cor-do-fundo);
+  width: 5vw;
+  height: 2rem;
+  margin: 10px;
+  border-radius: 50px;
+  border: none;
+  padding-left: 5px;
+  background-color: white;
+  color: #000000;
+  font-family: "Noto Sans", sans-serif;
+}
+
+#concluido-cadastro {
+  width: 5vw;
+  height: 2rem;
+  margin: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+  transition: 0.5s;
+}
+#concluido-cadastro:hover {
+  background-color: #45a049;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#codigo-cadastro {
+  background-color: var(--cinza);
+  color: aliceblue;
+  font-family: "Noto Sans", sans-serif;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+span {
+  background-color: var(--cinza);
+}
+
+#form-cadastro {
+  background-color: var(--cinza);
+}
+
+div {
+  display: flex;
+  align-items: center;
 }
