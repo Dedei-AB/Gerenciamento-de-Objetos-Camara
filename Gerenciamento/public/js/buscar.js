@@ -19,7 +19,7 @@ async function mostrarObjetos() {
               <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
               <td>${element.NomeSala}</td>
               <td>${element.Nome}</td>
-            </tr>`;
+               </tr>`;
   });
 }
 mostrarObjetos();
