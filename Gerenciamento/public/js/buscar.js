@@ -1,6 +1,8 @@
 const barraPesquisa = document.getElementById("barra-pesquisa");
 const corpoTabela = document.getElementById("corpo-tabela");
 const filtro = document.getElementById("filtrar-por");
+const editar = document.getElementById("lapis");
+const fechar = document.getElementById("fechar");
 
 async function pegarDados() {
   const res = await fetch("/dados-buscar");
@@ -12,9 +14,9 @@ async function pegarDados() {
 async function mostrarObjetos() {
   corpoTabela.innerHTML = ``;
   const dados = await pegarDados();
-  dados.forEach((element) => {
+  dados.forEach((element, index) => {
     corpoTabela.innerHTML += `<tr>
-              <td>${element.codigo}</td>
+              <td class="linha" id="linha${index}">${element.codigo}</td>
               <td>${element.NomeDoTipo}</td>
               <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
               <td>${element.NomeSala}</td>
@@ -51,6 +53,87 @@ async function pesquisar(input, tipoFiltro) {
 barraPesquisa.addEventListener("input", () =>
   pesquisar(barraPesquisa.value, filtro.value)
 );
+
+ editar.addEventListener("click", function () {
+    // Adiciona o CSS (se ainda não tiver sido adicionado)
+    if (!document.getElementById("estilo-linha")) {
+      const style = document.createElement("style");
+      style.id = "estilo-linha";
+      style.textContent = `
+        .linha {
+          transition: ease 0.3s;
+          cursor: pointer;
+        }
+        .linha:hover {
+          background-color: var(--cinza-claro-2);
+          transition: ease 0.3s;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    atualizarObjetos("editar")
+    editar.style.display = "none";
+    fechar.style.display = "flex";
+  });
+
+  fechar.addEventListener("click", function(){
+    editar.style.display = "flex";
+    fechar.style.display = "none";
+    const estilo = document.getElementById("estilo-linha");
+    estilo.remove();
+    seila();
+  })
+
+async function atualizarObjetos() {
+  corpoTabela.innerHTML = ``;
+  const dados = await pegarDados();
+  dados.forEach((element, index) => {
+    corpoTabela.innerHTML += `<tr>
+              <td class="linha" id="linha${index}">${element.codigo}</td>
+              <td>${element.NomeDoTipo}</td>
+              <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
+              <td>${element.NomeSala}</td>
+              <td>${element.Nome}</td>
+               </tr>`;
+  });
+  function cliqueHandler(valor){
+     console.log("Código clicado:", valor.textContent);
+  }
+
+     const codigo = document.querySelectorAll(".linha");
+     codigo.forEach(linha =>{
+      const clique = () => cliqueHandler(linha)
+      linha.addEventListener("click", clique)
+  })
+}
+
+async function seila() {
+  corpoTabela.innerHTML = ``;
+  const dados = await pegarDados();
+  dados.forEach((element, index) => {
+    corpoTabela.innerHTML += `<tr>
+              <td class="linha" id="linha${index}">${element.codigo}</td>
+              <td>${element.NomeDoTipo}</td>
+              <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
+              <td>${element.NomeSala}</td>
+              <td>${element.Nome}</td>
+               </tr>`;
+  });
+  function cliqueHandler(valor){
+     console.log("Código clicado:", valor.textContent);
+  }
+     const codigo = document.querySelectorAll(".linha");
+     codigo.forEach(linha =>{
+      const clique = () => cliqueHandler(linha)
+      linha.addEventListener("click", clique)
+      linha.removeEventListener("click", clique)
+     })
+}
+
+// codigo.forEach((element, index) =>{
+//   codigo[index].addEventListener("click", function (){
+//   console.log(element.value)})
+// })
 
 // 0: {codigo: 1234, NomeDoTipo: 'Computador', Nome: 'Ótimo', NomeSala: 'Sub. Macedo', Complemento: null}
 // 1: {codigo: 1111, NomeDoTipo: 'Impressora', Nome: 'Ótimo', NomeSala: 'Copa', Complemento: null}
