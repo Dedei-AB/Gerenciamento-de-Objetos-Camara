@@ -1,16 +1,19 @@
 const idInput = document.getElementById("objetoID");
 const informacoes = document.getElementById("informacoes");
 const botaoBuscar = document.getElementById("botaoBuscar");
+const salaSelect = document.getElementById("salas");
+const pisoSelect = document.getElementById("pisos");
 
 async function pegarSalas() {
   const resposta = await fetch("/salas");
   const dados = await resposta.json();
+  console.log(dados);
   return dados;
 }
 
 pegarSalas();
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
   if (dados) {
     console.log("Objeto recebido:", dados);
@@ -33,31 +36,52 @@ document.addEventListener("DOMContentLoaded", () => {
               <option value="Utilizável">Utilizável</option>
               <option value="Bom">Bom</option>`;
     }
+
+    // Atualizar piso
     async function salaParaPiso(nomeSala) {
       const salas = await pegarSalas();
-      document.getElementById("pisos").innerHTML = salas.forEach((element) => {
-        if (element.NomeSala == nomeSala) {
-          console.log(element.Piso_idPiso);
-          return element.Piso_idPiso;
-        }
-      });
+      const sala = salas.find((element) => element.NomeSala === nomeSala);
+      return sala ? sala.Piso_idPiso : null;
     }
-    if (Number(salaParaPiso(dados.NomeSala)) == 1) {
+    const piso = await salaParaPiso(dados.NomeSala);
+    console.log(piso);
+    if (piso == 1) {
       document.getElementById("pisos").innerHTML = `
-                  <option value="piso1">Piso 1</option>
-                  <option value="piso2">Piso 2</option>
-                  <option value="Garagem">Garagem</option>`;
-    } else if (Number(salaParaPiso(dados.NomeSala)) == 2) {
+                  <option value="1">Piso 1</option>
+                  <option value="2">Piso 2</option>
+                  <option value="3">Garagem</option>`;
+    } else if (piso == 2) {
       document.getElementById("pisos").innerHTML = `
-                  <option value="piso2">Piso 2</option>
-                  <option value="piso1">Piso 1</option>
-          <option value="Garagem">Garagem</option>`;
+                  <option value="2">Piso 2</option>
+                  <option value="1">Piso 1</option>
+          <option value="3">Garagem</option>`;
     } else {
       document.getElementById(
         "pisos"
-      ).innerHTML = `<option value="Garagem">Garagem</option>
-      <option value="piso1">Piso 1</option>
-      <option value="piso2">Piso 2</option>`;
+      ).innerHTML = `<option value="3">Garagem</option>
+      <option value="1">Piso 1</option>
+      <option value="2">Piso 2</option>`;
+    }
+
+    // Atualizar sala
+    async function atualizarSala() {
+      const salas = await pegarSalas();
+      salaSelect.innerHTML = "";
+      salas.forEach((element) => {
+        if (element.Piso_idPiso == pisoSelect.value) {
+          const option = document.createElement("option");
+          option.value = element.idSala;
+          option.text = element.NomeSala;
+          salaSelect.appendChild(option);
+        }
+      });
+    }
+    atualizarSala();
+    pisoSelect.addEventListener("change", atualizarSala);
+
+    async function ordenarSalas(primeiraSala) {
+      const salas = 
+      
     }
   }
 });
