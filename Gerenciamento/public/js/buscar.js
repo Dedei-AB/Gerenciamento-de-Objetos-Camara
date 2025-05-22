@@ -97,12 +97,23 @@ async function selecionarObjetos() {
                </tr>`;
   });
   function cliqueHandler(valor) {
-    console.log("Código clicado:", valor.textContent);
+    pegarDados().then((dados) => {
+      const objetoSelecionado = dados.find(
+        (item) => item.codigo.toString() === valor
+      );
+      if (objetoSelecionado) {
+        localStorage.setItem(
+          "objetoParaEditar",
+          JSON.stringify(objetoSelecionado)
+        );
+        window.location.href = "/atualizar.html"; // redireciona para a página de edição
+      }
+    });
   }
 
   const codigo = document.querySelectorAll(".linha");
   codigo.forEach((linha) => {
-    const clique = () => cliqueHandler(linha);
+    const clique = () => cliqueHandler(linha.textContent);
     linha.addEventListener("click", clique);
   });
 }
@@ -120,11 +131,22 @@ async function fecharSelecao() {
                </tr>`;
   });
   function cliqueHandler(valor) {
-    console.log("Código clicado:", valor.textContent);
+    pegarDados().then((dados) => {
+      const objetoSelecionado = dados.find(
+        (item) => item.codigo.toString() === valor
+      );
+      if (objetoSelecionado) {
+        localStorage.setItem(
+          "objetoParaEditar",
+          JSON.stringify(objetoSelecionado)
+        );
+        window.location.href = "/atualizar.html"; // redireciona para a página de edição
+      }
+    });
   }
   const codigo = document.querySelectorAll(".linha");
   codigo.forEach((linha) => {
-    const clique = () => cliqueHandler(linha);
+    const clique = () => cliqueHandler(linha.textcontent);
     linha.addEventListener("click", clique);
     linha.removeEventListener("click", clique);
   });
