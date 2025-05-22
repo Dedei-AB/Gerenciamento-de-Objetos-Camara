@@ -54,12 +54,12 @@ barraPesquisa.addEventListener("input", () =>
   pesquisar(barraPesquisa.value, filtro.value)
 );
 
- editar.addEventListener("click", function () {
-    // Adiciona o CSS (se ainda não tiver sido adicionado)
-    if (!document.getElementById("estilo-linha")) {
-      const style = document.createElement("style");
-      style.id = "estilo-linha";
-      style.textContent = `
+editar.addEventListener("click", function () {
+  // Adiciona o CSS (se ainda não tiver sido adicionado)
+  if (!document.getElementById("estilo-linha")) {
+    const style = document.createElement("style");
+    style.id = "estilo-linha";
+    style.textContent = `
         .linha {
           transition: ease 0.3s;
           cursor: pointer;
@@ -69,22 +69,22 @@ barraPesquisa.addEventListener("input", () =>
           transition: ease 0.3s;
         }
       `;
-      document.head.appendChild(style);
-    }
-    atualizarObjetos("editar")
-    editar.style.display = "none";
-    fechar.style.display = "flex";
-  });
+    document.head.appendChild(style);
+  }
+  selecionarObjetos();
+  editar.style.display = "none";
+  fechar.style.display = "flex";
+});
 
-  fechar.addEventListener("click", function(){
-    editar.style.display = "flex";
-    fechar.style.display = "none";
-    const estilo = document.getElementById("estilo-linha");
-    estilo.remove();
-    seila();
-  })
+fechar.addEventListener("click", function () {
+  editar.style.display = "flex";
+  fechar.style.display = "none";
+  const estilo = document.getElementById("estilo-linha");
+  estilo.remove();
+  fecharSelecao();
+});
 
-async function atualizarObjetos() {
+async function selecionarObjetos() {
   corpoTabela.innerHTML = ``;
   const dados = await pegarDados();
   dados.forEach((element, index) => {
@@ -96,18 +96,18 @@ async function atualizarObjetos() {
               <td>${element.Nome}</td>
                </tr>`;
   });
-  function cliqueHandler(valor){
-     console.log("Código clicado:", valor.textContent);
+  function cliqueHandler(valor) {
+    console.log("Código clicado:", valor.textContent);
   }
 
-     const codigo = document.querySelectorAll(".linha");
-     codigo.forEach(linha =>{
-      const clique = () => cliqueHandler(linha)
-      linha.addEventListener("click", clique)
-  })
+  const codigo = document.querySelectorAll(".linha");
+  codigo.forEach((linha) => {
+    const clique = () => cliqueHandler(linha);
+    linha.addEventListener("click", clique);
+  });
 }
 
-async function seila() {
+async function fecharSelecao() {
   corpoTabela.innerHTML = ``;
   const dados = await pegarDados();
   dados.forEach((element, index) => {
@@ -119,15 +119,15 @@ async function seila() {
               <td>${element.Nome}</td>
                </tr>`;
   });
-  function cliqueHandler(valor){
-     console.log("Código clicado:", valor.textContent);
+  function cliqueHandler(valor) {
+    console.log("Código clicado:", valor.textContent);
   }
-     const codigo = document.querySelectorAll(".linha");
-     codigo.forEach(linha =>{
-      const clique = () => cliqueHandler(linha)
-      linha.addEventListener("click", clique)
-      linha.removeEventListener("click", clique)
-     })
+  const codigo = document.querySelectorAll(".linha");
+  codigo.forEach((linha) => {
+    const clique = () => cliqueHandler(linha);
+    linha.addEventListener("click", clique);
+    linha.removeEventListener("click", clique);
+  });
 }
 
 // codigo.forEach((element, index) =>{
