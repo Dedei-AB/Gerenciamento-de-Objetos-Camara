@@ -77,11 +77,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
     atualizarSala();
+
     pisoSelect.addEventListener("change", atualizarSala);
 
-    async function ordenarSalas(primeiraSala) {
-      const salas = 
-      
+    ordenarSalas();
+    async function ordenarSalas() {
+      await atualizarSala();
+      const opcoes = Array.from(salaSelect.options);
+      const opcao1 = opcoes.find(
+        (element) => element.text === `${dados.NomeSala}`
+      );
+      salaSelect.innerHTML = ``;
+      salaSelect.appendChild(opcao1);
+      opcoes
+        .filter((opt) => opt !== opcao1)
+        .forEach((opt) => opcoes.appendChild(opt));
+      console.log(opcao1);
     }
   }
 });
