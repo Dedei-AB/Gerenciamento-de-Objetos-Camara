@@ -2,83 +2,62 @@ const idInput = document.getElementById("objetoID");
 const informacoes = document.getElementById("informacoes");
 const botaoBuscar = document.getElementById("botaoBuscar");
 
-async function pegarObjetos() {
-  const resposta = await fetch(`/dados-buscar/${idDigitado}`);
+async function pegarSalas() {
+  const resposta = await fetch("/salas");
   const dados = await resposta.json();
-  console.log(dados);
   return dados;
 }
 
-botaoBuscar.addEventListener("click", async (e) => {
-  e.preventDefault(); // Impede o envio do form
-  const idDigitado = idInput.value.trim().toLowerCase();
-
-  if (!idDigitado) {
-    alert("Digite um ID ou nome de objeto.");
-    return;
-  }
-
-  try {
-    const resposta = await fetch(`/dados-buscar/${idDigitado}`);
-    if (!resposta.ok) {
-      informacoes.innerHTML = `<p style="color:red">Objeto não encontrado.</p>`;
-      return;
-    }
-
-    const objetoEncontrado = await resposta.json();
-
-    // Atualiza dinamicamente os campos com os dados do objeto
-    informacoes.innerHTML = `
-        <label class="descrição-input" for="estadoObjeto">Estado do objeto</label>
-        <select class="input-atualizar" name="estado" id="estadoObjeto">
-            <option value="Ótimo" ${
-              objetoEncontrado.estado === "Ótimo" ? "selected" : ""
-            }>Ótimo</option>
-            <option value="Bom" ${
-              objetoEncontrado.estado === "Bom" ? "selected" : ""
-            }>Bom</option>
-            <option value="Ruim" ${
-              objetoEncontrado.estado === "Ruim" ? "selected" : ""
-            }>Ruim</option>
-        </select><br><br>
-
-       <div class="lugares">
-        <label class="descrição-input" for="piso">Piso</label><br>
-        <select class="input-atualizar" id="piso">
-            <option value="piso1" ${
-              objetoEncontrado.piso === "piso1" ? "selected" : ""
-            }>Piso 1</option>
-            <option value="piso2" ${
-              objetoEncontrado.piso === "piso2" ? "selected" : ""
-            }>Piso 2</option>
-            <option value="Garagem" ${
-              objetoEncontrado.piso === "Garagem" ? "selected" : ""
-            }>Garagem</option>
-        </select>
-      </div><br>
-
-      <div class="lugares">
-        <label class="descrição-input" for="local">Nome do local:</label>
-        <input class="input-atualizar" type="text" id="local" value="${
-          objetoEncontrado.local || ""
-        }">
-      </div>
-
-      <button class="atualizar" type="submit">Atualizar</button>
-    `;
-  } catch (error) {
-    console.error("Erro ao buscar objeto:", error);
-    informacoes.innerHTML = `<p style="color:red">Erro ao buscar o objeto.</p>`;
-  }
-});
+pegarSalas();
 
 document.addEventListener("DOMContentLoaded", () => {
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
   if (dados) {
     console.log("Objeto recebido:", dados);
     // Aqui você pode preencher campos com os valores recebidos, por exemplo:
-    document.getElementById("codigo").value = dados.codigo;
-    document.getElementById("nome").value = dados.Nome;
-    // ... e assim por diante
+    document.getElementById("codigo").innerHTML = `${dados.codigo}`;
+    document.getElementById("nome-objeto").value = `${dados.Complemento}`;
+    if (dados.Nome == "Bom") {
+      document.getElementById("estadoObjeto").innerHTML = `              
+              <option value="Bom">Bom</option>
+              <option value="Utilizável">Utilizável</option>
+              <option value="Ruim">Ruim</option>`;
+    } else if (dados.Nome == "Utilizável") {
+      document.getElementById("estadoObjeto").innerHTML = `              
+              <option value="Utilizável">Utilizável</option>
+              <option value="Bom">Bom</option>
+              <option value="Ruim">Ruim</option>`;
+    } else {
+      document.getElementById("estadoObjeto").innerHTML = `              
+              <option value="Ruim">Ruim</option>
+              <option value="Utilizável">Utilizável</option>
+              <option value="Bom">Bom</option>`;
+    }
+    async function salaParaPiso(nomeSala) {
+      const salas = await pegarSalas();
+      document.getElementById("pisos").innerHTML = salas.forEach((element) => {
+        if (element.NomeSala == nomeSala) {
+          console.log(element.Piso_idPiso);
+          return element.Piso_idPiso;
+        }
+      });
+    }
+    if (Number(salaParaPiso(dados.NomeSala)) == 1) {
+      document.getElementById("pisos").innerHTML = `
+                  <option value="piso1">Piso 1</option>
+                  <option value="piso2">Piso 2</option>
+                  <option value="Garagem">Garagem</option>`;
+    } else if (Number(salaParaPiso(dados.NomeSala)) == 2) {
+      document.getElementById("pisos").innerHTML = `
+                  <option value="piso2">Piso 2</option>
+                  <option value="piso1">Piso 1</option>
+          <option value="Garagem">Garagem</option>`;
+    } else {
+      document.getElementById(
+        "pisos"
+      ).innerHTML = `<option value="Garagem">Garagem</option>
+      <option value="piso1">Piso 1</option>
+      <option value="piso2">Piso 2</option>`;
+    }
   }
 });

@@ -19,20 +19,20 @@
       <form action="/at">
 
           <div class="divisoria">
-           <label class="descrição-input" for="objetoID">ID/Nome do objeto</label>
-           <div>
-              <input type="text" id="objetoID" name="objetoID"  placeholder="ID ou nome do objeto:">
-              <button id="botaoBuscar" type="button">Buscar</button>
-            </div>
+           <label class="descrição-input" for="objetoID">ID:</label>
+           <h1 id="codigo">Id do Objeto</h1>
           </div>
-  
-          <br> 
+          <div class="divisoria">
+            <label for="">Nome do Objeto:</label>
+            <input type="text" id="nome-objeto" value="Monitor">
+
+          </div>
 
         <div class="divisoria">
           <label class="descrição-input" for="estadoObjeto">Estado do objeto</label>
           <select class="input-atualizar" name="estado" id="estadoObjeto">
-              <option value="Ótimo">Ótimo</option>
               <option value="Bom">Bom</option>
+              <option value="Utilizável">Utilizável</option>
               <option value="Ruim">Ruim</option>
           </select>
         </div>
@@ -40,8 +40,7 @@
             
           <div class="lugares">
                 <label class="descrição-input" for="piso">Selecione o Piso:</label>
-                <select class="input-atualizar" id="piso" onchange="filtrarLugares()">
-                  <option value="">- Selecione -</option>
+                <select class="input-atualizar" id="pisos">
                   <option value="piso1">Piso 1</option>
                   <option value="piso2">Piso 2</option>
                   <option value="Garagem">Garagem</option>
