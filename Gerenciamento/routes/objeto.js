@@ -7,5 +7,6 @@ router.get("/dados-buscar", controllers.buscarObjetos);
 router.post("/cadastrar", controllers.cadastrarObjeto);
 router.get("/salas", controllers.buscarSalas);
 router.get("/dados-buscar/:id", controllers.buscarObjetoAtualizar);
+router.post("/atualizar", controllers.atualizarObjetos);
 
 module.exports = router;

@@ -57,19 +57,6 @@ exports.buscarSalas = (req, res) => {
 // -----------------------------------------------------------------------------------
 // Selects da página Atualizar (Macedo)
 
-exports.status = (req, res) => {
-  const sql = "SELECT * FROM bancodeobjetos.status;";
-};
-exports.tipoObjeto = (req, res) => {
-  const sql = "SELECT * FROM bancodeobjetos.tipoobjeto;";
-};
-
-exports.atualizarObjeto = (req, res) => {
-  const sql = `SELECT codigo, Nome,  NomePiso, NomeTipoSala
-FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.piso, bancodeobjetos.sala, bancodeobjetos.tiposala
-where idStatus = Status_idStatus and Piso_idPiso = idPiso and idSala = Sala_idSala and TipoSala_idTipoSala = idTipoSala;`;
-};
-
 exports.buscarObjetoAtualizar = (req, res) => {
   const id = req.params.id;
 
@@ -90,5 +77,26 @@ exports.buscarObjetoAtualizar = (req, res) => {
     }
 
     res.json(results[0]);
+  });
+};
+
+exports.atualizarObjetos = (req, res) => {
+  const { status, sala, complemento, codigo } = req.body;
+  const sql = `
+    UPDATE objeto 
+    SET Status_idStatus = ?, 
+        Sala_idSala = ?, 
+        Complemento = ?
+    WHERE codigo = ?`;
+
+  const values = [status, sala, complemento, codigo];
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Erro ao inserir:", err);
+      return res.status(500).json({ erro: "Erro ao atualizar objeto" });
+    }
+
+    res.status(201).json({ mensagem: "Objeto atualizado com sucesso! :)" });
   });
 };

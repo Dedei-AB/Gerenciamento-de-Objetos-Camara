@@ -1,8 +1,9 @@
-const idInput = document.getElementById("objetoID");
-const informacoes = document.getElementById("informacoes");
-const botaoBuscar = document.getElementById("botaoBuscar");
-const salaSelect = document.getElementById("salas");
+const botaoAtualizar = document.getElementById("btn-atualizar");
 const pisoSelect = document.getElementById("pisos");
+const salaSelect = document.getElementById("salas");
+const statusSelect = document.getElementById("estadoObjeto");
+const nomeobjeto = document.getElementById("nome-objeto");
+const idObjeto = document.getElementById("codigo").textContent;
 
 async function pegarSalas() {
   const resposta = await fetch("/salas");
@@ -13,11 +14,12 @@ async function pegarSalas() {
 
 pegarSalas();
 
+/* Essa parte é responsável por receber os valores da página buscar.html e 
+Alterar os valores de acordo com o objeto selecionado.*/
 document.addEventListener("DOMContentLoaded", async () => {
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
   if (dados) {
     console.log("Objeto recebido:", dados);
-    // Aqui você pode preencher campos com os valores recebidos, por exemplo:
     document.getElementById("codigo").innerHTML = `${dados.codigo}`;
     document.getElementById("nome-objeto").value = `${dados.Complemento}`;
     if (dados.Nome == "Bom") {
@@ -80,7 +82,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     pisoSelect.addEventListener("change", atualizarSala);
 
-    ordenarSalas();
     async function ordenarSalas() {
       await atualizarSala();
       const opcoes = Array.from(salaSelect.options);
@@ -89,10 +90,42 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
       salaSelect.innerHTML = ``;
       salaSelect.appendChild(opcao1);
-      opcoes
-        .filter((opt) => opt !== opcao1)
-        .forEach((opt) => opcoes.appendChild(opt));
-      console.log(opcao1);
+      const x = opcoes.filter((opt) => opt !== opcao1);
+      x.forEach((opt) => {
+        salaSelect.appendChild(opt);
+      });
+      salaSelect.value = opcao1.value;
     }
+    ordenarSalas();
   }
 });
+
+/*Essa parte é responsável por enviar os dados alterados para o banco de dados*/
+document
+  .getElementById("formAtualizar")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const dados = {
+      status: statusSelect.value,
+      sala: salaSelect.value,
+      complemento: nomeobjeto.value,
+      codigo: idObjeto,
+    }; // converte pra objeto normal
+
+    const resposta = await fetch("http://localhost:3000/atualizar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dados),
+    });
+
+    if (resposta.ok) {
+      window.location.href = "buscar.html"; // redireciona após atualizar
+    } else {
+      alert("Erro ao atualizar bobinho.");
+      console.log(dados);
+    }
+  });

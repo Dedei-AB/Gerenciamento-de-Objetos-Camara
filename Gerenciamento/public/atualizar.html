@@ -16,10 +16,9 @@
     <div class="caixa-atualizar">
       <h1>Atualizar Objetos</h1>
 
-      <form action="/at">
-
+      <form id="formAtualizar" action="/buscar.html">
           <div class="divisoria">
-           <label class="descrição-input" for="objetoID">ID:</label>
+           <label class="descrição-input" for="objetoID">ID do Objeto:</label>
            <h1 id="codigo">Id do Objeto</h1>
           </div>
           <div class="divisoria">
@@ -50,10 +49,6 @@
               <div class="lugares">
                 <label class="descrição-input" for="busca">Selecione a sala: </label>
                <select name="salas" id="salas">
-                <opition>dsc</opition>
-                <opition>csdc</opition>
-                <opition>bgr</opition>
-                <opition>csd</opition>
                </select>
               </div>
           
@@ -73,12 +68,12 @@
               <div id="selecionado" style="display:none; color: white; margin-top: 10px;"></div>
 
 
-              <button class="atualizar" type="submit">Atualizar</button>
+              <button class="atualizar" id="btn-atualizar" type="submit">Atualizar</button>
 
         </div>
   
           </div>
-       </form>
+      </form>
     </div>
 </body>
    <script type="module" src="./js/atualizar.js"></script>
