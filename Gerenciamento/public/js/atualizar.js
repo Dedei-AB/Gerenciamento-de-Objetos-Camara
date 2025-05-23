@@ -24,19 +24,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("nome-objeto").value = `${dados.Complemento}`;
     if (dados.Nome == "Bom") {
       document.getElementById("estadoObjeto").innerHTML = `              
-              <option value="Bom">Bom</option>
-              <option value="Utilizável">Utilizável</option>
-              <option value="Ruim">Ruim</option>`;
+              <option value="1">Bom</option>
+              <option value="2">Utilizável</option>
+              <option value="3">Ruim</option>`;
     } else if (dados.Nome == "Utilizável") {
       document.getElementById("estadoObjeto").innerHTML = `              
-              <option value="Utilizável">Utilizável</option>
-              <option value="Bom">Bom</option>
-              <option value="Ruim">Ruim</option>`;
+              <option value="2">Utilizável</option>
+              <option value="1">Bom</option>
+              <option value="3">Ruim</option>`;
     } else {
       document.getElementById("estadoObjeto").innerHTML = `              
-              <option value="Ruim">Ruim</option>
-              <option value="Utilizável">Utilizável</option>
-              <option value="Bom">Bom</option>`;
+              <option value="3">Ruim</option>
+              <option value="2">Utilizável</option>
+              <option value="1">Bom</option>`;
     }
 
     // Atualizar piso
