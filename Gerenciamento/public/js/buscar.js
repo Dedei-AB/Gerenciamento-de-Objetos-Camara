@@ -62,7 +62,7 @@ editar.addEventListener("click", function () {
     style.textContent = `
         .linha {
           transition: ease 0.3s;
-          cursor: pointer;
+          cursor: pointer; 
         }
         .linha:hover {
           background-color: var(--cinza-claro-2);
