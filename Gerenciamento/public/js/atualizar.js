@@ -3,7 +3,6 @@ const pisoSelect = document.getElementById("pisos");
 const salaSelect = document.getElementById("salas");
 const statusSelect = document.getElementById("estadoObjeto");
 const nomeobjeto = document.getElementById("nome-objeto");
-const idObjeto = document.getElementById("codigo").textContent;
 
 async function pegarSalas() {
   const resposta = await fetch("/salas");
@@ -101,31 +100,29 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 /*Essa parte é responsável por enviar os dados alterados para o banco de dados*/
-document
-  .getElementById("formAtualizar")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
+botaoAtualizar.addEventListener("click", async function () {
+  const idObjeto = document.getElementById("codigo").textContent;
 
-    const formData = new FormData(this);
-    const dados = {
-      status: statusSelect.value,
-      sala: salaSelect.value,
-      complemento: nomeobjeto.value,
-      codigo: idObjeto,
-    }; // converte pra objeto normal
+  if (!nomeobjeto.value) {
+    alert("Preencha todos os campos!");
+    return;
+  }
 
-    const resposta = await fetch("http://localhost:3000/atualizar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dados),
-    });
+  const payload = {
+    status: Number(statusSelect.value),
+    sala: Number(salaSelect.value),
+    complemento: nomeobjeto.value,
+    codigo: Number(idObjeto),
+  };
 
-    if (resposta.ok) {
-      window.location.href = "buscar.html"; // redireciona após atualizar
-    } else {
-      alert("Erro ao atualizar bobinho.");
-      console.log(dados);
-    }
+  const res = await fetch("http://localhost:3000/atualizar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
+  const data = await res.json();
+  alert(data.mensagem || data.erro);
+  if (!data.erro) {
+    window.location.href = "buscar.html";
+  }
+});
