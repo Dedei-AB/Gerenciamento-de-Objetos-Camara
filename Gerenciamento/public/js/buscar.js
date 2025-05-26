@@ -1,8 +1,6 @@
 const barraPesquisa = document.getElementById("barra-pesquisa");
 const corpoTabela = document.getElementById("corpo-tabela");
 const filtro = document.getElementById("filtrar-por");
-const editar = document.getElementById("lapis");
-const fechar = document.getElementById("fechar");
 
 async function pegarDados() {
   const res = await fetch("/dados-buscar");
@@ -15,16 +13,50 @@ async function mostrarObjetos() {
   corpoTabela.innerHTML = ``;
   const dados = await pegarDados();
   dados.forEach((element, index) => {
-    corpoTabela.innerHTML += `<tr>
+    const novoObjeto = document.createElement("tr");
+    novoObjeto.innerHTML = `
               <td class="linha" id="linha${index}">${element.codigo}</td>
               <td>${element.NomeDoTipo}</td>
               <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
               <td>${element.NomeSala}</td>
               <td>${element.Nome}</td>
-               </tr>`;
-  });
+              <td class="editar" id="editar${index}"><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-pencil-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"
+          />
+        </svg></td>`;
+
+    corpoTabela.appendChild(novoObjeto)
+
+    const buttonEdit = document.querySelector(`#editar${index}`);
+    buttonEdit.addEventListener("click", () => editarObjeto(index));
+})
 }
 mostrarObjetos();
+
+async function editarObjeto(index){
+  const codigo = document.getElementById(`linha${index}`).textContent
+    pegarDados().then((dados) => {
+      const objetoSelecionado = dados.find(
+        (item) => item.codigo.toString() === codigo
+      );
+      if (objetoSelecionado) {
+        localStorage.setItem(
+          "objetoParaEditar",
+          JSON.stringify(objetoSelecionado)
+        );
+        window.location.href = "/atualizar.html"; // redireciona para a página de edição
+      }
+    });
+
+}
 
 async function pesquisar(input, tipoFiltro) {
   corpoTabela.innerHTML = ``;
@@ -36,16 +68,32 @@ async function pesquisar(input, tipoFiltro) {
     return valor.toString().toLowerCase().includes(termo);
   });
 
-  filtrados.forEach((valor) => {
-    let novaLista = document.createElement("tr");
-    novaLista.innerHTML += `
-              <td>${valor.codigo}</td>
-              <td>${valor.NomeDoTipo}</td>
-              <td>${valor.Complemento ? valor.Complemento : "Sem nome"}</td>
-              <td>${valor.NomeSala}</td>
-              <td>${valor.Nome}</td>`;
-    corpoTabela.appendChild(novaLista);
-  });
+  filtrados.forEach((element, index) => {
+    const novoObjeto = document.createElement("tr");
+    novoObjeto.innerHTML = `
+              <td class="linha" id="linha${index}">${element.codigo}</td>
+              <td>${element.NomeDoTipo}</td>
+              <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
+              <td>${element.NomeSala}</td>
+              <td>${element.Nome}</td>
+              <td class="editar" id="editar${index}"><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-pencil-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"
+          />
+        </svg></td>`;
+
+    corpoTabela.appendChild(novoObjeto)
+
+    const buttonEdit = document.querySelector(`#editar${index}`);
+    buttonEdit.addEventListener("click", () => editarObjeto(index));
+})
   console.log("Dados da pesquisa:", filtrados);
   console.log("valor da barra", filtro.value);
 }
@@ -53,104 +101,6 @@ async function pesquisar(input, tipoFiltro) {
 barraPesquisa.addEventListener("input", () =>
   pesquisar(barraPesquisa.value, filtro.value)
 );
-
-editar.addEventListener("click", function () {
-  // Adiciona o CSS (se ainda não tiver sido adicionado)
-  if (!document.getElementById("estilo-linha")) {
-    const style = document.createElement("style");
-    style.id = "estilo-linha";
-    style.textContent = `
-        .linha {
-          transition: ease 0.3s;
-          cursor: pointer; 
-        }
-        .linha:hover {
-          background-color: var(--cinza-claro-2);
-          transition: ease 0.3s;
-        }
-      `;
-    document.head.appendChild(style);
-  }
-  selecionarObjetos();
-  editar.style.display = "none";
-  fechar.style.display = "flex";
-});
-
-fechar.addEventListener("click", function () {
-  editar.style.display = "flex";
-  fechar.style.display = "none";
-  const estilo = document.getElementById("estilo-linha");
-  estilo.remove();
-  fecharSelecao();
-});
-
-async function selecionarObjetos() {
-  corpoTabela.innerHTML = ``;
-  const dados = await pegarDados();
-  dados.forEach((element, index) => {
-    corpoTabela.innerHTML += `<tr>
-              <td class="linha" id="linha${index}">${element.codigo}</td>
-              <td>${element.NomeDoTipo}</td>
-              <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
-              <td>${element.NomeSala}</td>
-              <td>${element.Nome}</td>
-               </tr>`;
-  });
-  function cliqueHandler(valor) {
-    pegarDados().then((dados) => {
-      const objetoSelecionado = dados.find(
-        (item) => item.codigo.toString() === valor
-      );
-      if (objetoSelecionado) {
-        localStorage.setItem(
-          "objetoParaEditar",
-          JSON.stringify(objetoSelecionado)
-        );
-        window.location.href = "/atualizar.html"; // redireciona para a página de edição
-      }
-    });
-  }
-
-  const codigo = document.querySelectorAll(".linha");
-  codigo.forEach((linha) => {
-    const clique = () => cliqueHandler(linha.textContent);
-    linha.addEventListener("click", clique);
-  });
-}
-
-async function fecharSelecao() {
-  corpoTabela.innerHTML = ``;
-  const dados = await pegarDados();
-  dados.forEach((element, index) => {
-    corpoTabela.innerHTML += `<tr>
-              <td class="linha" id="linha${index}">${element.codigo}</td>
-              <td>${element.NomeDoTipo}</td>
-              <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
-              <td>${element.NomeSala}</td>
-              <td>${element.Nome}</td>
-               </tr>`;
-  });
-  function cliqueHandler(valor) {
-    pegarDados().then((dados) => {
-      const objetoSelecionado = dados.find(
-        (item) => item.codigo.toString() === valor
-      );
-      if (objetoSelecionado) {
-        localStorage.setItem(
-          "objetoParaEditar",
-          JSON.stringify(objetoSelecionado)
-        );
-        window.location.href = "/atualizar.html"; // redireciona para a página de edição
-      }
-    });
-  }
-  const codigo = document.querySelectorAll(".linha");
-  codigo.forEach((linha) => {
-    const clique = () => cliqueHandler(linha.textcontent);
-    linha.addEventListener("click", clique);
-    linha.removeEventListener("click", clique);
-  });
-}
 
 // codigo.forEach((element, index) =>{
 //   codigo[index].addEventListener("click", function (){
