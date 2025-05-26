@@ -31,7 +31,7 @@ pisoSelecionado.addEventListener("change", atualizarLocais);
 function gerarCodigo() {
   const codigoGerado = Math.floor(1000 + Math.random() * 9000);
   document.getElementById("numero").textContent = `${codigoGerado}`;
-  document.getElementById("codigoInput").value = `${codigoGerado}`;
+  document.getElementById("codigoInput-cadastro").value = `${codigoGerado}`;
 }
 
 botaoConcluido.addEventListener("click", async function () {
