@@ -7,6 +7,13 @@ const nomeStatus = document.getElementById("estado-cadastro");
 const nomePiso = document.getElementById("piso-cadastro");
 const nomeLocal = document.getElementById("local-cadastro");
 
+async function pegarDados() {
+  const res = await fetch("/dados-buscar");
+  const dados = await res.json();
+  console.log("Dados", dados);
+  return dados;
+}
+
 async function pegarSalas() {
   const res = await fetch("/salas");
   const salas = await res.json();
@@ -35,6 +42,8 @@ function gerarCodigo() {
 }
 
 botaoConcluido.addEventListener("click", async function () {
+  const dados = await pegarDados();
+  const idObjeto = dados.length + 1;
   const obj = nomeObjeto.value.trim();
   const complemento = nomeComplemento.value.trim();
   const estado = nomeStatus.value.trim();
@@ -47,6 +56,7 @@ botaoConcluido.addEventListener("click", async function () {
   }
 
   const payload = {
+    idObjeto,
     codigo: document.getElementById("codigoInput-cadastro").value,
     tipoObjeto: obj,
     status: estado,

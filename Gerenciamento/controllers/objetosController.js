@@ -10,7 +10,7 @@ exports.getObjetos = (req, res) => {
 };
 
 exports.buscarObjetos = (req, res) => {
-  const sql = `SELECT codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
+  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
 where TipoObjeto_idTipoObjeto = idTipoObjeto 
 and Status_idStatus=idStatus
 and idSala= Sala_idSala
@@ -26,17 +26,18 @@ and idPiso=Piso_idPiso;`;
 // Selects da página Cadastrar (Emanuel)
 
 exports.cadastrarObjeto = (req, res) => {
-  const { codigo, tipoObjeto, complemento, status, sala } = req.body;
+  const { idObjeto, codigo, tipoObjeto, complemento, status, sala } = req.body;
 
   const sql =
-    "INSERT INTO objeto (codigo, TipoObjeto_idTipoObjeto, complemento, Status_idStatus, Sala_idSala) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO objeto ( codigo, TipoObjeto_idTipoObjeto, complemento, Status_idStatus, Sala_idSala) VALUES ( ?, ?, ?, ?, ?)";
   const values = [codigo, tipoObjeto, complemento, status, sala];
   db.query(sql, values, (err, result) => {
     if (err) {
-      console.error("Erro ao inserir:", err);
-      return res.status(500).json({ erro: "Erro ao cadastrar objeto" });
+      console.error("Erro ao inserir:", err.sqlMessage || err.message || err);
+      return res.status(500).json({
+        erro: err.sqlMessage || err.message || "Erro ao cadastrar objeto",
+      });
     }
-
     res.status(201).json({ mensagem: "Objeto cadastrado com sucesso" });
   });
 };
@@ -61,7 +62,7 @@ exports.buscarObjetoAtualizar = (req, res) => {
   const id = req.params.id;
 
   const sql = `
-    SELECT codigo, Nome as estado, NomePiso as piso, NomeSala as local, NomeDoTipo as nome
+    SELECT idObjeto, codigo, Nome as estado, NomePiso as piso, NomeSala as local, NomeDoTipo as nome
     FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tiposala, bancodeobjetos.piso, bancodeobjetos.tipoobjeto
     where idStatus = Status_idStatus and idSala = Sala_idSala and TipoSala_idTipoSala = idTipoSala and Piso_idPiso = idPiso and TipoObjeto_idTipoObjeto = idTipoObjeto and
     objeto.codigo = ? `;
