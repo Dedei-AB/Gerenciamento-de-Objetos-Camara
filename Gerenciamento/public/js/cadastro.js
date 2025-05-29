@@ -87,3 +87,4 @@ botaoConcluido.addEventListener("click", async function () {
 });
 
 gerarCodigo();
+gerarCodigo();
