@@ -174,6 +174,30 @@ td {
   height: auto;
 }
 
+#lapis{
+    display: flex;
+}
+
+#fechar {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgb(212, 40, 40);
+  height: 3rem;
+  width: 3rem;
+  border-radius: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px black;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+#fechar:hover {
+  transform: translateY(-5px);
+  transition: ease 0.3s;
+}
+
 /* CSS da página cadastrar */
 
 #titulo {
