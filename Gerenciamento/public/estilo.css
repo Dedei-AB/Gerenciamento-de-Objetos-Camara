@@ -43,9 +43,8 @@ a {
 }
 
 .container {
-  min-width: 100vw;
+  width: 100vw;
   min-height: 100vh;
-  max-width: auto;
   max-height: auto;
   display: flex;
   align-items: center;
@@ -135,17 +134,15 @@ table {
 }
 
 .tabela-objetos {
-  width: 72vw;
+  padding-bottom: 1rem;
+  max-width: 72vw;
   overflow-y: auto;
   overflow-x: auto;
   max-height: 60vh;
 }
 
 thead tr {
-  position: sticky;
-  top: 0;
   background: white;
-  z-index: 10;
   background-color: var(--cinza-claro-2);
   border: 1px solid black;
 }
@@ -177,28 +174,9 @@ td {
   height: auto;
 }
 
-#lapis{
-    display: flex;
-}
-
-#fechar {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgb(212, 40, 40);
-  height: 3rem;
-  width: 3rem;
-  border-radius: 100%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  border: solid 1px black;
+.editar{
   cursor: pointer;
-  transition: ease 0.3s;
-}
-#fechar:hover {
-  transform: translateY(-5px);
-  transition: ease 0.3s;
+  padding: .5rem;
 }
 
 /*  ------------------------------------------------------------ CSS da página cadastro.html ------------------------------------------------------------ */
@@ -389,12 +367,19 @@ label {
 }
 
 
-/*  ------------------------------------------------------------ CSS mobile da página buscar.html ------------------------------------------------------------ */
-/*  ------------------------------------------------------------ CSS mobile da página cadastro.html ------------------------------------------------------------ */
 @media (max-width: 768px) {
   .caixa-input{
-    width: 15rem;
+    width: 17rem;
     flex-direction: column;
   }
+
+  #caixa-cadastro{
+    margin-bottom: 10rem;
+    padding: 2rem 1rem 1rem 1rem;
+  }
+
+  td{
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
 }
-/*  ------------------------------------------------------------ CSS mobile da página atualizar.html ------------------------------------------------------------ */
