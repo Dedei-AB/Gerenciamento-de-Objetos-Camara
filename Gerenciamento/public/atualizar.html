@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Objetos Câmara</title>
 </head>
-<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="att.estilo.css">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 </style>
@@ -19,13 +19,12 @@
            <label class="descrição-input" for="objetoID">ID do Objeto:</label>
            <h1 id="codigo">Id do Objeto</h1>
           </div>
-          <div class="divisoria">
+          <div class="group">
             <label for="">Nome do Objeto:</label>
             <input type="text" id="nome-objeto" value="Monitor">
-<br>
           </div>
 
-        <div class="divisoria">
+        <div class="group">
           <label class="descrição-input" for="estadoObjeto">Estado do objeto</label>
           <select class="input-atualizar" name="estado" id="estadoObjeto">
               <option value="1">Bom</option>
@@ -33,18 +32,18 @@
               <option value="3">Ruim</option>
           </select>
         </div>
-          <br>
             
-          <div class="lugares">
-                <label class="descrição-input" for="piso">Selecione o Piso:</label>
+            <div class="group">
+                 <label class="descrição-input" for="piso">Selecione o Piso:</label>
                 <select class="input-atualizar" id="pisos">
                   <option value="1">Piso 1</option>
                   <option value="2">Piso 2</option>
                   <option value="3">Garagem</option>
                 </select>
-              </div><br>
+            </div>
           
-              <div class="lugares">
+
+              <div class="group">
                 <label class="descrição-input" for="busca">Selecione a sala: </label>
                <select name="salas" id="salas">
                </select>
