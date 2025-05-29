@@ -35,11 +35,6 @@ async function atualizarLocais() {
 
 pisoSelecionado.addEventListener("change", atualizarLocais);
 
-function gerarCodigo() {
-  const codigoGerado = Math.floor(1000 + Math.random() * 9000);
-  document.getElementById("numero").textContent = `${codigoGerado}`;
-  document.getElementById("codigoInput-cadastro").value = `${codigoGerado}`;
-}
 
 botaoConcluido.addEventListener("click", async function () {
   const dados = await pegarDados();
@@ -85,5 +80,3 @@ botaoConcluido.addEventListener("click", async function () {
     alert("Erro ao cadastrar: " + err.message);
   }
 });
-
-gerarCodigo();

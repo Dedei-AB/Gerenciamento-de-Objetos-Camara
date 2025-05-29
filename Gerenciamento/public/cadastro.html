@@ -13,23 +13,25 @@
   <body>
     <div class="container">
       <img
-        class="logo-cadastro"
+        class="logo"
         onclick="window.location.href='index.html'"
         src="ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png"
         alt=""
       />
+      <h1>Cadastrar Objeto</h1>
+      
       <div id="caixa-cadastro">
-        <h1 id="titulo">Cadastrar Objeto</h1>
-        <hr>
 
         <div class="botoes-cadastro">
             <!-- Código -->
-            <h2 id="codigo-cadastro">Código: <span id="numero"></span></h2>
-            <input type="hidden" id="codigoInput-cadastro" name="codigo" />
+            <div class="caixa-input">
+              <h2 id="codigo-cadastro">Código:</h2>
+              <input type="text" id="codigoInput-cadastro" name="codigo" placeholder="1234, 1222..."/>
+            </div>
 
             <!-- Tipo -->
-              <div class="tipo-objeto">
-                <label class="label-cadastro" for="obj-cadastro">Tipo Objeto</label>
+              <div class="caixa-input">
+                <label class="label-cadastro" for="obj-cadastro">Tipo Objeto:</label>
                 <select id="obj-cadastro">
                   <option value="1">Bens Móveis</option>
                   <option value="2">Bens Imóveis</option>
@@ -38,8 +40,8 @@
 
 
             <!-- Complemento -->
-              <div class="complemento">
-                <label class="label-cadastro" for="complemento-cadastro">Complemento</label>
+              <div class="caixa-input">
+                <label class="label-cadastro" for="complemento-cadastro">Nome do objeto:</label>
                 <input
                   type="text"
                   placeholder="Monitor Dell 1920 x 1080..."
@@ -49,8 +51,8 @@
               </div>
 
             <!-- Estado -->
-              <div class="status-objeto">
-                <label class="label-cadastro" for="estado-cadastro">Estado do Objeto</label>
+              <div class="caixa-input">
+                <label class="label-cadastro" for="estado-cadastro">Status do Objeto:</label>
                 <select id="estado-cadastro" required>
                   <option value="">Selecionar</option>
                   <option value="1">Bom</option>
@@ -60,8 +62,8 @@
               </div>
 
             <!-- Piso -->
-            <div class="piso-objeto">
-              <label class="label-cadastro" for="piso-cadastro">Piso</label>
+            <div class="caixa-input">
+              <label class="label-cadastro" for="piso-cadastro">Piso:</label>
               <select id="piso-cadastro" required>
                 <option value="">Selecionar</option>
                 <option value="1">Piso 1</option>
@@ -71,8 +73,8 @@
             </div>
 
             <!-- Sala -->
-            <div class="sala-objeto">
-              <label class="label-cadastro" for="local-cadastro">Local</label>
+            <div class="caixa-input">
+              <label class="label-cadastro" for="local-cadastro">Local:</label>
               <select id="local-cadastro" required>
                 <option value="">Selecionar</option>
               </select>

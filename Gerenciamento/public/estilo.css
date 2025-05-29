@@ -3,6 +3,7 @@
   --cinza: rgb(73, 73, 73);
   --cinza-claro-2: rgb(128, 128, 128);
   --cinza-claro-3: rgb(208, 208, 208);
+  --verde: #53c253;
 }
 
 @font-face {
@@ -42,8 +43,10 @@ a {
 }
 
 .container {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  max-width: auto;
+  max-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +83,7 @@ button {
   cursor: pointer;
 }
 
-/* CSS da página busca.html: */
+/*  ------------------------------------------------------------ CSS da página busca.html ------------------------------------------------------------ */
 
 #barra-pesquisa {
   width: 70vw;
@@ -198,162 +201,61 @@ td {
   transition: ease 0.3s;
 }
 
-/* CSS da página cadastrar */
-
-#titulo {
-  font-size: 2rem;
-  color: #ffffff;
-  margin-bottom: 20px;
-  font-family: "Noto Sans", sans-serif;
-  background-color: var(--cinza);
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-#container-cadastro {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: var(--cor-do-fundo);
-}
-
-#caixa-cadastro {
-  width: 35vw;
-  height: auto;
-  border: var(--cinza) 1px solid;
-  border-radius: 10px;
+/*  ------------------------------------------------------------ CSS da página cadastro.html ------------------------------------------------------------ */
+#caixa-cadastro{
   background-color: var(--cinza);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.botoes-cadastro {
-  margin: 1rem;
-  background-color: var(--cinza);
-}
-::placeholder {
-  text-align: start;
-}
-
-.label-cadastro {
-  padding-left: 20px;
-  background-color: var(--cinza);
-  color: #ffffff;
-  font-family: "Noto Sans", sans-serif;
-  margin-right: 50px;
-}
-
-#obj-cadastro {
-  background-color: rbg(var(--cor-do-fundo));
-  width: 7vw;
-  height: 2rem;
-  margin: 10px;
+  padding: 3.5rem;
   border-radius: 50px;
-  border: none;
-  background-color: white;
-  color: #000000;
-  font-family: "Noto Sans", sans-serif;
 }
 
-option {
-  display: flex;
-  padding: 0%;
-  align-items: start;
-  justify-content: start;
-  background-color: var(--cor-do-fundo);
-  color: #ffffff;
-  font-family: "Noto Sans", sans-serif;
-  border: none;
+#codigo-cadastro{
+  color: white;
+  padding-right: 2rem;
 }
 
-.logo-cadastro {
-  width: 11rem;
-  height: auto;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  top: 30px;
-  cursor: pointer;
-}
-#estado-cadastro {
-  background-color: rbg(var(--cor-do-fundo));
-  width: 6vw;
-  height: 2rem;
-  margin: 10px;
-  border-radius: 50px;
-  border: none;
-  background-color: white;
-  color: #000000;
-  font-family: "Noto Sans", sans-serif;
-}
-#piso-cadastro {
-  background-color: rbg(var(--cor-do-fundo));
-  width: 6vw;
-  height: 2rem;
-  margin: 10px;
-  border-radius: 50px;
-  border: none;
-  background-color: white;
-  color: #000000;
-  font-family: "Noto Sans", sans-serif;
-}
-
-#local-cadastro {
-  background-color: rbg(var(--cor-do-fundo));
-  width: 6vw;
-  height: 2rem;
-  margin: 10px;
-  border-radius: 50px;
-  border: none;
-  background-color: white;
-  color: #000000;
-  font-family: "Noto Sans", sans-serif;
-}
-
-#concluido-cadastro {
-  width: 5vw;
-  height: 2rem;
-  margin: 10px;
-  border-radius: 50px;
-  border: none;
-  background-color: rgb(255, 255, 255);
-  color: #000000;
-  transition: 0.5s;
-}
-#concluido-cadastro:hover {
-  background-color: #45a049;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-#codigo-cadastro {
-  background-color: var(--cinza);
-  color: aliceblue;
-  font-family: "Noto Sans", sans-serif;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  text-align: center;
-}
-
-span {
-  background-color: var(--cinza);
-}
-
-#for-cadastro {
-  background-color: var(--cinza);
-}
-
-div {
+.caixa-input{
+  width: 100%;
+  height: 3rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
-/* CSS da página atualizar.html: */
+.label-cadastro{
+  padding-right: 1rem;
+}
+
+#complemento-cadastro{
+  text-align: left;
+  padding-left: .5rem;
+}
+
+#codigoInput-cadastro{
+  text-align: left;
+  padding-left: .5rem;
+}
+
+#concluido-cadastro{
+  border: none;
+  border-radius: 100px;
+  background-color: white;
+  width: 7rem;
+  height: 2rem;
+  transition: .5s;
+  margin: 0;
+}
+
+#concluido-cadastro:hover{
+  transform: scale(1.1);
+  background-color: var(--verde);
+  transition: .5s;
+}
+/*  ------------------------------------------------------------ CSS da página atualizar.html ------------------------------------------------------------ */
 
 #lapis {
   position: fixed;
@@ -388,10 +290,12 @@ div {
   align-self: center;
   width: auto;
   height: 2rem;
+  transition: .5s;
 }
 .atualizar:hover {
-  background-color: #53c257;
-  transition: 1s;
+  transform: scale(1.1);
+  background-color: var(--verde);
+  transition: .5s;
 }
 
 .caixa-atualizar {
@@ -483,3 +387,14 @@ label {
   display: flex;
   flex-direction: column;
 }
+
+
+/*  ------------------------------------------------------------ CSS mobile da página buscar.html ------------------------------------------------------------ */
+/*  ------------------------------------------------------------ CSS mobile da página cadastro.html ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .caixa-input{
+    width: 15rem;
+    flex-direction: column;
+  }
+}
+/*  ------------------------------------------------------------ CSS mobile da página atualizar.html ------------------------------------------------------------ */
