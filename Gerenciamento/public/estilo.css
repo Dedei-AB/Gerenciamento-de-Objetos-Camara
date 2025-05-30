@@ -208,10 +208,6 @@ td {
   padding-right: 1rem;
 }
 
-#complemento-cadastro{
-  text-align: left;
-  padding-left: .5rem;
-}
 
 #codigoInput-cadastro{
   text-align: left;
@@ -315,7 +311,7 @@ input[type="text"] {
   color: #242222;
   border-radius: 30px;
   border: none;
-  width: 70%;
+  width: auto;
   padding-left: 0.5rem;
   height: 2rem;
   background-color: rgb(255, 255, 255);
@@ -364,8 +360,16 @@ label {
 .divisoria {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+textarea {
+  text-align: center;
+  padding: .7rem;
+  border-radius: 10px;
+  border: solid 1px black;
+}
 
 @media (max-width: 768px) {
   .caixa-input{

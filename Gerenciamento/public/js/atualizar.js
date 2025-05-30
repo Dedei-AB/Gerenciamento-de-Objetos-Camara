@@ -7,19 +7,20 @@ const nomeobjeto = document.getElementById("nome-objeto");
 async function pegarSalas() {
   const resposta = await fetch("/salas");
   const dados = await resposta.json();
-  console.log(dados);
   return dados;
 }
 
 pegarSalas();
 
+
 /* Essa parte é responsável por receber os valores da página buscar.html e 
 Alterar os valores de acordo com o objeto selecionado.*/
 document.addEventListener("DOMContentLoaded", async () => {
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
+  console.log(dados.idObjeto)
   if (dados) {
     console.log("Objeto recebido:", dados);
-    document.getElementById("codigo").innerHTML = `${dados.codigo}`;
+    document.getElementById("codigo").value = `${dados.codigo}`;
     document.getElementById("nome-objeto").value = `${dados.Complemento}`;
     if (dados.Nome == "Bom") {
       document.getElementById("estadoObjeto").innerHTML = `              
@@ -50,18 +51,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("pisos").innerHTML = `
                   <option value="1">Piso 1</option>
                   <option value="2">Piso 2</option>
-                  <option value="3">Garagem</option>`;
+                  <option value="3">Térreo</option>
+                  <option value="4">Edifício e Fachada</option>`;
     } else if (piso == 2) {
       document.getElementById("pisos").innerHTML = `
                   <option value="2">Piso 2</option>
                   <option value="1">Piso 1</option>
-          <option value="3">Garagem</option>`;
-    } else {
+          <option value="3">Térreo</option>
+          <option value="4">Edifício e Fachada</option>`;
+    } else if (piso == 3){
       document.getElementById(
         "pisos"
-      ).innerHTML = `<option value="3">Garagem</option>
+      ).innerHTML = `<option value="3">Térreo</option>
       <option value="1">Piso 1</option>
-      <option value="2">Piso 2</option>`;
+      <option value="2">Piso 2</option>
+      <option value="4">Edifício e Fachada</option>`;
+    } else {
+ document.getElementById(
+        "pisos"
+      ).innerHTML = `<option value="4">Edifício e Fachada</option>
+      <option value="3">Térreo</option>
+      <option value="1">Piso 1</option>
+      <option value="2">Piso 2</option>`
     }
 
     // Atualizar sala
@@ -101,8 +112,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 /*Essa parte é responsável por enviar os dados alterados para o banco de dados*/
 botaoAtualizar.addEventListener("click", async function () {
-  const idObjeto = document.getElementById("codigo").textContent;
-
+  const id = document.getElementById("codigo").value;
+  const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
+  console.log(dados.idObjeto)
   if (!nomeobjeto.value) {
     alert("Preencha todos os campos!");
     return;
@@ -112,7 +124,8 @@ botaoAtualizar.addEventListener("click", async function () {
     status: Number(statusSelect.value),
     sala: Number(salaSelect.value),
     complemento: nomeobjeto.value,
-    codigo: Number(idObjeto),
+    codigo: Number(id),
+    idObjeto: dados.idObjeto
   };
 
   const res = await fetch("http://localhost:3000/atualizar", {

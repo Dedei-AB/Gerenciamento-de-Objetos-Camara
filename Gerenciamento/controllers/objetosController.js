@@ -82,15 +82,16 @@ exports.buscarObjetoAtualizar = (req, res) => {
 };
 
 exports.atualizarObjetos = (req, res) => {
-  const { status, sala, complemento, codigo } = req.body;
+  const { status, sala, complemento, codigo, idObjeto } = req.body;
   const sql = `
     UPDATE objeto 
     SET Status_idStatus = ?, 
         Sala_idSala = ?, 
-        Complemento = ?
-    WHERE codigo = ?`;
+        Complemento = ?,
+        codigo = ?
+    WHERE idObjeto = ?`;
 
-  const values = [status, sala, complemento, codigo];
+  const values = [status, sala, complemento, codigo, idObjeto];
 
   db.query(sql, values, (err, result) => {
     if (err) {
