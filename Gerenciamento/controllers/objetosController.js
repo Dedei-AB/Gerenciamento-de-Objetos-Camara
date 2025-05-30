@@ -35,7 +35,7 @@ exports.cadastrarObjeto = (req, res) => {
     if (err) {
       console.error("Erro ao inserir:", err.sqlMessage || err.message || err);
       return res.status(500).json({
-        erro: err.sqlMessage || err.message || "Erro ao cadastrar objeto",
+        erro: (err.sqlMessage? "Código já utilizado.": "none")|| (err.message? "Código já utilizado.": "none") || "Erro ao cadastrar objeto",
       });
     }
     res.status(201).json({ mensagem: "Objeto cadastrado com sucesso" });
@@ -96,9 +96,11 @@ exports.atualizarObjetos = (req, res) => {
   db.query(sql, values, (err, result) => {
     if (err) {
       console.error("Erro ao inserir:", err);
-      return res.status(500).json({ erro: "Erro ao atualizar objeto" });
+      return res.status(500).json({
+        erro: (err.sqlMessage? "Código já utilizado.": "none")|| (err.message? "Código já utilizado.": "none") || "Erro ao cadastrar objeto",
+      });
     }
 
-    res.status(201).json({ mensagem: "Objeto atualizado com sucesso! :)" });
+    res.status(201).json({ mensagem: "Objeto atualizado com sucesso!" });
   });
 };

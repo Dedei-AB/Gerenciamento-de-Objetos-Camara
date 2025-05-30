@@ -274,7 +274,7 @@ td {
   margin-top: 30px;
   width: 30%;
   min-width: 250px;
-  max-width: 350px;
+  max-width: auto;
   min-height: 500px;
   max-height: auto;
   overflow-y: auto;
@@ -289,7 +289,7 @@ td {
 }
 
 #estadoObjeto {
-  width: 70%;
+  width: auto;
   color: #000000;
   border-radius: 30px;
   background-color: rgb(255, 255, 255);
