@@ -391,4 +391,9 @@ textarea {
     padding-left: .5rem;
     padding-right: .5rem;
   }
+
+  textarea{
+    padding-top: .3rem;
+    min-height: 3rem;
+  }
 }
