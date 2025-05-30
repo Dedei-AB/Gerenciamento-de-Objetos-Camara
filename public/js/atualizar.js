@@ -118,6 +118,9 @@ botaoAtualizar.addEventListener("click", async function () {
   if (!nomeobjeto.value) {
     alert("Preencha todos os campos!");
     return;
+  }else if(Number(document.getElementById("codigo")) < 999){
+    alert("O código deve ter 4 dígitos!")
+    return;
   }
 
   const payload = {
