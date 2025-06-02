@@ -413,8 +413,12 @@ textarea {
   }
 
    .caixa-atualizar{
-    width: 17rem;
+    max-width: auto;
     flex-direction: column;
+  }
+
+  select{
+    width: 12rem;
   }
 
   #caixa-cadastro{
