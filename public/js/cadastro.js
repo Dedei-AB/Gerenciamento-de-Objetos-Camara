@@ -44,23 +44,13 @@ botaoConcluido.addEventListener("click", async function () {
   const piso = nomePiso.value.trim();
   const local = nomeLocal.value.trim();
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
   if (!obj || !complemento || !estado || !piso || !local || !codigoObj) {
     alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
-=======
-  if (!obj || !complemento || !estado || !piso || !local) {
-    mostrarAlerta("Por favor, preencha todos os campos antes de concluir o cadastro.");
->>>>>>> Stashed changes
     return;
   }
 
   if (codigoObj.length < 4){
     alert("Código do objeto inválido. O código teve ter 4 dígitos!")
-=======
-  if (!obj || !complemento || !estado || !piso || !local) {
-    mostrarAlerta("Por favor, preencha todos os campos antes de concluir o cadastro.");
->>>>>>> Stashed changes
     return;
   }
 
@@ -92,8 +82,6 @@ botaoConcluido.addEventListener("click", async function () {
     }
   } catch (err) {
     mostrarAlerta("Erro ao cadastrar: " + err.message);
-<<<<<<< Updated upstream
-=======
   }
 });
 
@@ -112,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const fechar = document.querySelector(".fechar");
   if (fechar) {
     fechar.addEventListener("click", fecharAlerta);
->>>>>>> Stashed changes
   }
 });
 
