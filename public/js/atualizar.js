@@ -111,11 +111,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 botaoAtualizar.addEventListener("click", async function () {
   const id = document.getElementById("codigo").value;
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
-  if (!nomeobjeto.value) {
+
+  if(!id || !statusSelect.value || !salaSelect.value || !nomeobjeto.value || !dados.idObjeto){
     alert("Preencha todos os campos!");
     return;
-  }else if(Number(document.getElementById("codigo")) < 999){
-    alert("O código deve ter 4 dígitos!")
+  }
+  if(id.length < 4){
+    alert("Código do objeto inválido. O código teve ter 4 dígitos!")
     return;
   }
 
