@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 botaoAtualizar.addEventListener("click", async function () {
   const id = document.getElementById("codigo").value;
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
+<<<<<<< Updated upstream
 
   if(!id || !statusSelect.value || !salaSelect.value || !nomeobjeto.value || !dados.idObjeto){
     alert("Preencha todos os campos!");
@@ -118,6 +119,14 @@ botaoAtualizar.addEventListener("click", async function () {
   }
   if(id.length < 4){
     alert("Código do objeto inválido. O código teve ter 4 dígitos!")
+=======
+  console.log(dados.idObjeto)
+  if (!nomeobjeto.value) {
+    mostrarAlerta("Preencha todos os campos!");
+    return;
+  }else if(Number(document.getElementById("codigo")) < 999){
+    mostrarAlerta("O código deve ter 4 dígitos!")
+>>>>>>> Stashed changes
     return;
   }
 
@@ -135,8 +144,29 @@ botaoAtualizar.addEventListener("click", async function () {
     body: JSON.stringify(payload),
   });
   const data = await res.json();
-  alert(data.mensagem || data.erro);
+  mostrarAlerta(data.mensagem || data.erro);
   if (!data.erro) {
+  setTimeout(() => {
     window.location.href = "buscar.html";
+  }, 2000); // Redireciona após 2 segundos
+}
+});
+
+function mostrarAlerta(mensagem) {
+  document.getElementById("mensagemAlerta").textContent = mensagem;
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("meuAlerta").style.display = "block";
+}
+
+function fecharAlerta() {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("meuAlerta").style.display = "none";
+}
+
+// Garante que o botão X funciona
+document.addEventListener("DOMContentLoaded", () => {
+  const fechar = document.querySelector(".fechar");
+  if (fechar) {
+    fechar.addEventListener("click", fecharAlerta);
   }
 });

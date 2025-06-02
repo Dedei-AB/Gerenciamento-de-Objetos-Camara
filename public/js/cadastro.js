@@ -44,8 +44,13 @@ botaoConcluido.addEventListener("click", async function () {
   const piso = nomePiso.value.trim();
   const local = nomeLocal.value.trim();
 
+<<<<<<< Updated upstream
   if (!obj || !complemento || !estado || !piso || !local || !codigoObj) {
     alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
+=======
+  if (!obj || !complemento || !estado || !piso || !local) {
+    mostrarAlerta("Por favor, preencha todos os campos antes de concluir o cadastro.");
+>>>>>>> Stashed changes
     return;
   }
 
@@ -76,11 +81,29 @@ botaoConcluido.addEventListener("click", async function () {
     }
 
     const data = await res.json();
-    alert(data.mensagem || data.erro);
+    mostrarAlerta(data.mensagem || data.erro);
     if (!data.erro) {
       window.location.href = "buscar.html";
     }
   } catch (err) {
-    alert("Erro ao cadastrar: " + err.message);
+    mostrarAlerta("Erro ao cadastrar: " + err.message);
+  }
+});
+
+function mostrarAlerta(mensagem) {
+  document.getElementById("mensagemAlerta").textContent = mensagem;
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("meuAlerta").style.display = "block";
+}
+
+function fecharAlerta() {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("meuAlerta").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const fechar = document.querySelector(".fechar");
+  if (fechar) {
+    fechar.addEventListener("click", fecharAlerta);
   }
 });
