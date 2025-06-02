@@ -16,8 +16,79 @@ and Status_idStatus=idStatus
 and idSala= Sala_idSala
 and TipoSala_idTipoSala=idTipoSala
 and idPiso=Piso_idPiso
-ORDER BY ? ASC;`;
-  db.query(sql, [codigo], (err, results) => {
+ORDER BY codigo ASC;`;
+
+  const codigo = req.body
+
+  db.query(sql, codigo, (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
+};
+
+exports.buscarObjetosTipoObj = (req, res) => {
+  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
+where TipoObjeto_idTipoObjeto = idTipoObjeto 
+and Status_idStatus=idStatus
+and idSala= Sala_idSala
+and TipoSala_idTipoSala=idTipoSala
+and idPiso=Piso_idPiso
+ORDER BY NomeDoTipo ASC;`;
+
+  const codigo = req.body
+
+  db.query(sql, codigo, (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
+};
+
+exports.buscarObjetosNome = (req, res) => {
+  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
+where TipoObjeto_idTipoObjeto = idTipoObjeto 
+and Status_idStatus=idStatus
+and idSala= Sala_idSala
+and TipoSala_idTipoSala=idTipoSala
+and idPiso=Piso_idPiso
+ORDER BY complemento ASC;`;
+
+  const codigo = req.body
+
+  db.query(sql, codigo, (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
+};
+
+exports.buscarObjetosSala = (req, res) => {
+  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
+where TipoObjeto_idTipoObjeto = idTipoObjeto 
+and Status_idStatus=idStatus
+and idSala= Sala_idSala
+and TipoSala_idTipoSala=idTipoSala
+and idPiso=Piso_idPiso
+ORDER BY NomeSala ASC;`;
+
+  const codigo = req.body
+
+  db.query(sql, codigo, (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
+};
+
+exports.buscarObjetosStatus = (req, res) => {
+  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
+where TipoObjeto_idTipoObjeto = idTipoObjeto 
+and Status_idStatus=idStatus
+and idSala= Sala_idSala
+and TipoSala_idTipoSala=idTipoSala
+and idPiso=Piso_idPiso
+ORDER BY Nome ASC;`;
+
+  const codigo = req.body
+
+  db.query(sql, codigo, (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
   });

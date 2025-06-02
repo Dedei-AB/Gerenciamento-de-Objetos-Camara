@@ -2,15 +2,15 @@ const barraPesquisa = document.getElementById("barra-pesquisa");
 const corpoTabela = document.getElementById("corpo-tabela");
 const filtro = document.getElementById("filtrar-por");
 
-async function pegarDados() {
-  const res = await fetch("/dados-buscar");
+async function pegarDados(x = "/dados-buscar") {
+  const res = await fetch(x);
   const dados = await res.json();
   return dados;
 }
 
-async function mostrarObjetos() {
+async function mostrarObjetos(x = "/dados-buscar") {
   corpoTabela.innerHTML = ``;
-  const dados = await pegarDados();
+  const dados = await pegarDados(x);
   dados.forEach((element, index) => {
     const novoObjeto = document.createElement("tr");
     novoObjeto.innerHTML = `
@@ -93,6 +93,30 @@ async function pesquisar(input, tipoFiltro) {
     buttonEdit.addEventListener("click", () => editarObjeto(index));
   });
 }
+
+filtro.addEventListener("change", async () => {
+  switch (filtro.value){
+    case "codigo":
+      mostrarObjetos()
+      break;
+
+    case "NomeDoTipo":
+      mostrarObjetos("/dados-buscar-tipo-obj")
+      break;
+
+    case "Complemento":
+      mostrarObjetos("/dados-buscar-nome")
+      break;
+
+    case "NomeSala":
+      mostrarObjetos("/dados-buscar-sala")
+      break;
+
+    case "Nome":
+      mostrarObjetos("/dados-buscar-status")
+      break;
+  }
+});
 
 barraPesquisa.addEventListener("input", () =>
   pesquisar(barraPesquisa.value, filtro.value)
