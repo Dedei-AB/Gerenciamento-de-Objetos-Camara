@@ -37,20 +37,26 @@ pisoSelecionado.addEventListener("change", atualizarLocais);
 botaoConcluido.addEventListener("click", async function () {
   const dados = await pegarDados();
   const idObjeto = dados.length + 1;
+  const codigoObj = document.getElementById("codigoInput-cadastro").value.trim();
   const obj = nomeObjeto.value.trim();
   const complemento = nomeComplemento.value.trim();
   const estado = nomeStatus.value.trim();
   const piso = nomePiso.value.trim();
   const local = nomeLocal.value.trim();
 
-  if (!obj || !complemento || !estado || !piso || !local) {
+  if (!obj || !complemento || !estado || !piso || !local || !codigoObj) {
     alert("Por favor, preencha todos os campos antes de concluir o cadastro.");
+    return;
+  }
+
+  if (codigoObj.length < 4){
+    alert("Código do objeto inválido. O código teve ter 4 dígitos!")
     return;
   }
 
   const payload = {
     idObjeto,
-    codigo: document.getElementById("codigoInput-cadastro").value,
+    codigo: codigoObj,
     tipoObjeto: obj,
     status: estado,
     sala: local,
