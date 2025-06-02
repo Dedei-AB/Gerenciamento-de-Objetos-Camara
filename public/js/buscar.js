@@ -5,7 +5,6 @@ const filtro = document.getElementById("filtrar-por");
 async function pegarDados() {
   const res = await fetch("/dados-buscar");
   const dados = await res.json();
-  console.log("Dados", dados);
   return dados;
 }
 
@@ -33,29 +32,28 @@ async function mostrarObjetos() {
           />
         </svg></td>`;
 
-    corpoTabela.appendChild(novoObjeto)
+    corpoTabela.appendChild(novoObjeto);
 
     const buttonEdit = document.querySelector(`#editar${index}`);
     buttonEdit.addEventListener("click", () => editarObjeto(index));
-})
+  });
 }
 mostrarObjetos();
 
-async function editarObjeto(index){
-  const codigo = document.getElementById(`linha${index}`).textContent
-    pegarDados().then((dados) => {
-      const objetoSelecionado = dados.find(
-        (item) => item.codigo.toString() === codigo
+async function editarObjeto(index) {
+  const codigo = document.getElementById(`linha${index}`).textContent;
+  pegarDados().then((dados) => {
+    const objetoSelecionado = dados.find(
+      (item) => item.codigo.toString() === codigo
+    );
+    if (objetoSelecionado) {
+      localStorage.setItem(
+        "objetoParaEditar",
+        JSON.stringify(objetoSelecionado)
       );
-      if (objetoSelecionado) {
-        localStorage.setItem(
-          "objetoParaEditar",
-          JSON.stringify(objetoSelecionado)
-        );
-        window.location.href = "/atualizar.html"; // redireciona para a página de edição
-      }
-    });
-
+      window.location.href = "/atualizar.html"; // redireciona para a página de edição
+    }
+  });
 }
 
 async function pesquisar(input, tipoFiltro) {
@@ -89,13 +87,11 @@ async function pesquisar(input, tipoFiltro) {
           />
         </svg></td>`;
 
-    corpoTabela.appendChild(novoObjeto)
+    corpoTabela.appendChild(novoObjeto);
 
     const buttonEdit = document.querySelector(`#editar${index}`);
     buttonEdit.addEventListener("click", () => editarObjeto(index));
-})
-  console.log("Dados da pesquisa:", filtrados);
-  console.log("valor da barra", filtro.value);
+  });
 }
 
 barraPesquisa.addEventListener("input", () =>

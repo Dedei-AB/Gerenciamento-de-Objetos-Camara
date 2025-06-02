@@ -17,9 +17,7 @@ pegarSalas();
 Alterar os valores de acordo com o objeto selecionado.*/
 document.addEventListener("DOMContentLoaded", async () => {
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
-  console.log(dados.idObjeto)
   if (dados) {
-    console.log("Objeto recebido:", dados);
     document.getElementById("codigo").value = `${dados.codigo}`;
     document.getElementById("nome-objeto").value = `${dados.Complemento}`;
     if (dados.Nome == "Bom") {
@@ -46,7 +44,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       return sala ? sala.Piso_idPiso : null;
     }
     const piso = await salaParaPiso(dados.NomeSala);
-    console.log(piso);
     if (piso == 1) {
       document.getElementById("pisos").innerHTML = `
                   <option value="1">Piso 1</option>
@@ -114,7 +111,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 botaoAtualizar.addEventListener("click", async function () {
   const id = document.getElementById("codigo").value;
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
-  console.log(dados.idObjeto)
   if (!nomeobjeto.value) {
     alert("Preencha todos os campos!");
     return;

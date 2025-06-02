@@ -10,7 +10,6 @@ const nomeLocal = document.getElementById("local-cadastro");
 async function pegarDados() {
   const res = await fetch("/dados-buscar");
   const dados = await res.json();
-  console.log("Dados", dados);
   return dados;
 }
 
@@ -34,7 +33,6 @@ async function atualizarLocais() {
 }
 
 pisoSelecionado.addEventListener("change", atualizarLocais);
-
 
 botaoConcluido.addEventListener("click", async function () {
   const dados = await pegarDados();
