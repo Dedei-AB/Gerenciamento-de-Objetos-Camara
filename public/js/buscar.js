@@ -16,7 +16,7 @@ async function mostrarObjetos(x = "/dados-buscar") {
     novoObjeto.innerHTML = `
               <td class="linha" id="linha${index}">${element.codigo}</td>
               <td>${element.NomeDoTipo}</td>
-              <td>${element.Complemento ? element.Complemento : "Sem nome"}</td>
+              <td class="complemento"></td>
               <td>${element.NomeSala}</td>
               <td>${element.Nome}</td>
               <td class="editar" id="editar${index}"><svg
@@ -33,6 +33,8 @@ async function mostrarObjetos(x = "/dados-buscar") {
         </svg></td>`;
 
     corpoTabela.appendChild(novoObjeto);
+    const celulaComplemento = novoObjeto.querySelector(".complemento");
+    celulaComplemento.textContent = element.Complemento || "Sem nome";
 
     const buttonEdit = document.querySelector(`#editar${index}`);
     buttonEdit.addEventListener("click", () => editarObjeto(index));
