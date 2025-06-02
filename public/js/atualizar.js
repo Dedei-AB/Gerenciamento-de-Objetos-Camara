@@ -112,9 +112,15 @@ botaoAtualizar.addEventListener("click", async function () {
   const id = document.getElementById("codigo").value;
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
   if(!id || !statusSelect.value || !salaSelect.value || !nomeobjeto.value || !dados.idObjeto){
     alert("Preencha todos os campos!");
+=======
+  console.log(dados.idObjeto)
+  if (!nomeobjeto.value) {
+    mostrarAlerta("Preencha todos os campos!");
+>>>>>>> Stashed changes
     return;
   }
   if(id.length < 4){
@@ -126,6 +132,9 @@ botaoAtualizar.addEventListener("click", async function () {
     return;
   }else if(Number(document.getElementById("codigo")) < 999){
     mostrarAlerta("O código deve ter 4 dígitos!")
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     return;
   }
