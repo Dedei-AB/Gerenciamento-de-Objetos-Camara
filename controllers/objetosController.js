@@ -15,8 +15,9 @@ where TipoObjeto_idTipoObjeto = idTipoObjeto
 and Status_idStatus=idStatus
 and idSala= Sala_idSala
 and TipoSala_idTipoSala=idTipoSala
-and idPiso=Piso_idPiso;`;
-  db.query(sql, (err, results) => {
+and idPiso=Piso_idPiso
+ORDER BY ? ASC;`;
+  db.query(sql, [codigo], (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
   });
@@ -57,29 +58,6 @@ exports.buscarSalas = (req, res) => {
 
 // -----------------------------------------------------------------------------------
 // Selects da página Atualizar (Macedo)
-
-exports.buscarObjetoAtualizar = (req, res) => {
-  const id = req.params.id;
-
-  const sql = `
-    SELECT idObjeto, codigo, Nome as estado, NomePiso as piso, NomeSala as local, NomeDoTipo as nome
-    FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tiposala, bancodeobjetos.piso, bancodeobjetos.tipoobjeto
-    where idStatus = Status_idStatus and idSala = Sala_idSala and TipoSala_idTipoSala = idTipoSala and Piso_idPiso = idPiso and TipoObjeto_idTipoObjeto = idTipoObjeto and
-    objeto.codigo = ? `;
-
-  db.query(sql, [id], (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Erro ao buscar o objeto" });
-    }
-
-    if (results.length === 0) {
-      return res.status(404).json({ error: "Objeto não encontrado" });
-    }
-
-    res.json(results[0]);
-  });
-};
 
 exports.atualizarObjetos = (req, res) => {
   const { status, sala, complemento, codigo, idObjeto } = req.body;
