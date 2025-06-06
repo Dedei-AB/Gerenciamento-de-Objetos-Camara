@@ -3,7 +3,7 @@
   --cinza: rgb(73, 73, 73);
   --cinza-claro-2: rgb(128, 128, 128);
   --cinza-claro-3: rgb(208, 208, 208);
-  --verde: #53c253;
+  --verde: #6aff6fd0;
 }
 
 @font-face {
@@ -75,11 +75,18 @@ button {
   background-color: var(--cinza-claro-2);
   height: 3rem;
   width: 10rem;
-  border: 1px solid black;
-  border-radius: 5px;
+  border: none;
+  border-radius: 25px;
   margin: 1rem;
   color: black;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
+  background-color: var(--cinza-claro-3);
 }
 
 /*  ------------------------------------------------------------ CSS da página busca.html ------------------------------------------------------------ */
@@ -174,13 +181,22 @@ td {
   height: auto;
 }
 
-.editar{
+.editar {
   cursor: pointer;
-  padding: .5rem;
+  padding: 0.5rem;
+}
+
+.bi {
+  transition: 0.3s ease-in;
+}
+
+.bi:hover {
+  transition: 0.3s ease;
+  transform: scale(1.3);
 }
 
 /*  ------------------------------------------------------------ CSS da página cadastro.html ------------------------------------------------------------ */
-#caixa-cadastro{
+#caixa-cadastro {
   background-color: var(--cinza);
   display: flex;
   flex-direction: column;
@@ -190,12 +206,12 @@ td {
   border-radius: 50px;
 }
 
-#codigo-cadastro{
+#codigo-cadastro {
   color: white;
   padding-right: 2rem;
 }
 
-.caixa-input{
+.caixa-input {
   width: 100%;
   height: 3rem;
   display: flex;
@@ -204,52 +220,29 @@ td {
   margin-bottom: 2rem;
 }
 
-.label-cadastro{
+.label-cadastro {
   padding-right: 1rem;
 }
 
-
-#codigoInput-cadastro{
+#codigoInput-cadastro {
   text-align: left;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
 }
 
-#concluido-cadastro{
+#concluido-cadastro {
   border: none;
   border-radius: 100px;
   background-color: white;
   width: 7rem;
   height: 2rem;
-  transition: .5s;
+  transition: 0.3s;
   margin: 0;
 }
 
-#concluido-cadastro:hover{
-  transform: scale(1.1);
+#concluido-cadastro:hover {
   background-color: var(--verde);
-  transition: .5s;
 }
 /*  ------------------------------------------------------------ CSS da página atualizar.html ------------------------------------------------------------ */
-
-#lapis {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  background-color: var(--cinza-claro-3);
-  height: 3rem;
-  width: 3rem;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: solid 1px black;
-  cursor: pointer;
-  transition: ease 0.3s;
-}
-#lapis:hover {
-  transform: translateY(-5px);
-  transition: ease 0.3s;
-}
 
 .atualizar {
   margin-top: 1rem;
@@ -264,10 +257,10 @@ td {
   align-self: center;
   width: auto;
   height: 2rem;
+  transition: 0.3s;
 }
 .atualizar:hover {
-  background-color: #53c257;
-  transition: 1s;
+  background-color: var(--verde);
 }
 
 .caixa-atualizar {
@@ -331,7 +324,7 @@ label {
 }
 
 .lugar:hover {
-  background-color: #a8a8a8;
+  background-color: rgb(168, 168, 168);
 }
 
 .lugar.mostrar {
@@ -348,12 +341,12 @@ label {
   justify-content: center;
   flex-direction: column;
 }
-.group{
-    width: 100%;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.group {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .divisoria {
@@ -365,7 +358,7 @@ label {
 
 textarea {
   text-align: center;
-  padding: .7rem;
+  padding: 0.7rem;
   border-radius: 10px;
   border: solid 1px black;
 }
@@ -377,7 +370,7 @@ textarea {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #000000; 
+  background-color: #000000;
   padding: 40px;
   border-radius: 8px;
   z-index: 1000;
@@ -405,34 +398,33 @@ textarea {
   cursor: pointer;
 }
 
-
 @media (max-width: 768px) {
-  .caixa-input{
+  .caixa-input {
     width: 17rem;
     flex-direction: column;
   }
 
-   .caixa-atualizar{
+  .caixa-atualizar {
     max-width: auto;
     flex-direction: column;
   }
 
-  select{
+  select {
     width: 12rem;
   }
 
-  #caixa-cadastro{
+  #caixa-cadastro {
     margin-bottom: 10rem;
     padding: 2rem 1rem 1rem 1rem;
   }
 
-  td{
-    padding-left: .5rem;
-    padding-right: .5rem;
+  td {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
-  textarea{
-    padding-top: .3rem;
+  textarea {
+    padding-top: 0.3rem;
     min-height: 3rem;
   }
 }
