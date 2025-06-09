@@ -7,13 +7,13 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: db
+      DB_HOST: objetos_gerenciar_rede
       DB_USER: Admin
       DB_PASSWORD: Mudar1234@$$
       DB_NAME: objetos_gerenciar
     networks:
-      - dbnet
+      - objetos_gerenciar_rede
 
 networks:
-  dbnet:
+  objetos_gerenciar_rede:
     external: true
