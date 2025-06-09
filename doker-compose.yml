@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: node_app
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: Admin
+      DB_PASSWORD: Mudar1234@$$
+      DB_NAME: objetos_gerenciar
+    networks:
+      - dbnet
+
+networks:
+  dbnet:
+    external: true
