@@ -6,7 +6,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: mysql
+      DB_HOST: db
       DB_USER: Admin
       DB_PASSWORD: Mudar1234@$$
       DB_NAME: objetos_gerenciar
