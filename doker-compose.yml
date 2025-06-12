@@ -9,7 +9,7 @@ services:
     environment:
       DB_HOST: objetos_gerenciar_rede
       DB_USER: Admin
-      DB_PASSWORD: Mudar1234@$$
+      DB_PASSWORD: Mudar1234@$
       DB_NAME: objetos_gerenciar
     networks:
       - objetos_gerenciar_rede
