@@ -7,9 +7,9 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: objetos_gerenciar_rede
+      DB_HOST: mysql # Altere conforme o hostname correto do seu banco
       DB_USER: Admin
-      DB_PASSWORD: Mudar1234@$
+      DB_PASSWORD: "Mudar1234@$$"
       DB_NAME: objetos_gerenciar
     networks:
       - objetos_gerenciar_rede
