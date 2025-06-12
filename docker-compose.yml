@@ -2,13 +2,14 @@ version: "3.8"
 
 services:
   app:
-    image: node:18-alpine
+    build: .Dockerfile
+    container_name: node_app
     ports:
       - "3000:3000"
     environment:
       DB_HOST: mysql
       DB_USER: Admin
-      DB_PASSWORD: "Mudar1234@$$"
+      DB_PASSWORD: Mudar1234@$$
       DB_NAME: objetos_gerenciar
     networks:
       - objetos_gerenciar_rede
