@@ -2,12 +2,11 @@ version: "3.8"
 
 services:
   app:
-    build: .
-    container_name: node_app
+    image: node:18-alpine
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: mysql # Altere conforme o hostname correto do seu banco
+      DB_HOST: mysql
       DB_USER: Admin
       DB_PASSWORD: "Mudar1234@$$"
       DB_NAME: objetos_gerenciar
