@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   app:
-    image: EmanuelAS/site:latest
+    image: emanuelas/site:latest
     ports:
       - "3000:3000"
     environment:
