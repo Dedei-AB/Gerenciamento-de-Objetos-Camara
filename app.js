@@ -12,5 +12,5 @@ const PORT = 3306;
 const HOST = "localhost"; // escuta em todas as interfaces
 
 app.listen(PORT, HOST, () => {
-  console.log(`Servidor rodando em http://${HOST}:3306`);
+  console.log(`Servidor rodando em http://${HOST}:${PORT}`);
 });
