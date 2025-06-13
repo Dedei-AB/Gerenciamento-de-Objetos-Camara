@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciamento de Objetos Câmara</title>
+  </head>
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+  </style>
+
+  <body>
+    <div class="container">
+      <img
+        class="logo"
+        onclick="window.location.href='index.html' "
+        src="./images/ChatGPT_Image_28_de_abr._de_2025__14_36_26__1_-removebg-preview.png"
+        alt=""
+      />
+      <h1>Buscar Objetos</h1>
+
+      <div class="caixa-buscar">
+        <div class="buscar">
+          <i class="fas fa-search icone-lupa"></i>
+          <input
+            type="text"
+            id="barra-pesquisa"
+            name="pesquisar"
+            placeholder="Pesquisar:"
+          />
+        </div>
+        <div class="filtrar">
+          <label for="buscar-por">Buscar por:</label>
+          <select name="tfiltros" id="filtrar-por">
+            <option class="opcao-filtrar" value="codigo">Código</option>
+            <option class="opcao-filtrar" value="NomeDoTipo">
+              Tipo do Objeto
+            </option>
+            <option class="opcao-filtrar" value="Complemento">Nome</option>
+            <option class="opcao-filtrar" value="NomeSala">Local</option>
+            <option class="opcao-filtrar" value="Nome">Status</option>
+          </select>
+        </div>
+
+        <div class="tabela-objetos">
+          <table>
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Tipo do Objeto</th>
+                <th>Nome</th>
+                <th>Local</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="corpo-tabela"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultado"></div>
+  </body>
+  <script type="module" src="./js/buscar.js"></script>
+</html>
