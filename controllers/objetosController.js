@@ -25,7 +25,7 @@ exports.buscarObjetos = (req, res) => {
   db.query(sql, (err, results) => {
     if (err) {
       console.error("Erro ao buscar objetos:", err);
-      return res.status(500).json({ error: err });
+      return res.status(500).json({ error: err.message });
     }
     res.json(results);
   });
