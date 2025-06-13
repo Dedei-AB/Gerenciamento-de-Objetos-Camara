@@ -10,18 +10,23 @@ exports.getObjetos = (req, res) => {
 };
 
 exports.buscarObjetos = (req, res) => {
-  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
-where TipoObjeto_idTipoObjeto = idTipoObjeto 
-and Status_idStatus=idStatus
-and idSala= Sala_idSala
-and TipoSala_idTipoSala=idTipoSala
-and idPiso=Piso_idPiso
-ORDER BY codigo ASC;`;
+  const sql = `
+    SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento 
+    FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, 
+         bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
+    WHERE TipoObjeto_idTipoObjeto = idTipoObjeto 
+      AND Status_idStatus = idStatus
+      AND idSala = Sala_idSala
+      AND TipoSala_idTipoSala = idTipoSala
+      AND idPiso = Piso_idPiso
+    ORDER BY codigo ASC;
+  `;
 
-  const codigo = req.body
-
-  db.query(sql, codigo, (err, results) => {
-    if (err) return res.status(500).json({ error: err });
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Erro ao buscar objetos:", err);
+      return res.status(500).json({ error: err });
+    }
     res.json(results);
   });
 };
@@ -35,7 +40,7 @@ and TipoSala_idTipoSala=idTipoSala
 and idPiso=Piso_idPiso
 ORDER BY NomeDoTipo ASC;`;
 
-  const codigo = req.body
+  const codigo = req.body;
 
   db.query(sql, codigo, (err, results) => {
     if (err) return res.status(500).json({ error: err });
@@ -52,7 +57,7 @@ and TipoSala_idTipoSala=idTipoSala
 and idPiso=Piso_idPiso
 ORDER BY complemento ASC;`;
 
-  const codigo = req.body
+  const codigo = req.body;
 
   db.query(sql, codigo, (err, results) => {
     if (err) return res.status(500).json({ error: err });
@@ -69,7 +74,7 @@ and TipoSala_idTipoSala=idTipoSala
 and idPiso=Piso_idPiso
 ORDER BY NomeSala ASC;`;
 
-  const codigo = req.body
+  const codigo = req.body;
 
   db.query(sql, codigo, (err, results) => {
     if (err) return res.status(500).json({ error: err });
@@ -86,7 +91,7 @@ and TipoSala_idTipoSala=idTipoSala
 and idPiso=Piso_idPiso
 ORDER BY Nome ASC;`;
 
-  const codigo = req.body
+  const codigo = req.body;
 
   db.query(sql, codigo, (err, results) => {
     if (err) return res.status(500).json({ error: err });
@@ -107,7 +112,10 @@ exports.cadastrarObjeto = (req, res) => {
     if (err) {
       console.error("Erro ao inserir:", err.sqlMessage || err.message || err);
       return res.status(500).json({
-        erro: (err.sqlMessage? "Código já utilizado.": "none")|| (err.message? "Código já utilizado.": "none") || "Erro ao cadastrar objeto",
+        erro:
+          (err.sqlMessage ? "Código já utilizado." : "none") ||
+          (err.message ? "Código já utilizado." : "none") ||
+          "Erro ao cadastrar objeto",
       });
     }
     res.status(201).json({ mensagem: "Objeto cadastrado com sucesso" });
@@ -146,7 +154,10 @@ exports.atualizarObjetos = (req, res) => {
     if (err) {
       console.error("Erro ao inserir:", err);
       return res.status(500).json({
-        erro: (err.sqlMessage? "Código já utilizado.": "none")|| (err.message? "Código já utilizado.": "none") || "Erro ao cadastrar objeto",
+        erro:
+          (err.sqlMessage ? "Código já utilizado." : "none") ||
+          (err.message ? "Código já utilizado." : "none") ||
+          "Erro ao cadastrar objeto",
       });
     }
 
