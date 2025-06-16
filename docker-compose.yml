@@ -2,15 +2,10 @@ version: "3.8"
 
 services:
   node:
-    build: .
-    container_name: node_app
+    image: stemas22122007/gobjetos:latest
     restart: always
     env_file:
       - .env
-    volumes:
-      - .:/app
-    expose:
-      - "3000"
     depends_on:
       - db
 
