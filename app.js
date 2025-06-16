@@ -8,8 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", objetosRoutes);
 
-const PORT = 3306;
-const HOST = "localhost"; // escuta em todas as interfaces
+const PORT = 3000;
+const HOST = "0.0.0.0"; // escuta em todas as interfaces
 
 app.listen(PORT, HOST, () => {
   console.log(`Servidor rodando em http://${HOST}:${PORT}`);
