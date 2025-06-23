@@ -14,17 +14,17 @@ services:
       - mysql_data:/var/lib/mysql
 
   app:
-  image: seuusuario/gobjetos:latest
-  ports:
-    - "3000:3000"
-  depends_on:
-    - db
-  environment:
-    DB_HOST: db
-    DB_PORT: 3306
-    DB_USER: Admin
-    DB_PASSWORD: "Mudar@1234"
-    DB_NAME: bancodeobjetos
+    image: seuusuario/gobjetos:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: Admin
+      DB_PASSWORD: "Mudar@1234"
+      DB_NAME: bancodeobjetos
 
 volumes:
   mysql_data:
