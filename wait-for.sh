@@ -1,13 +1,19 @@
 #!/bin/sh
-# Script básico de espera
 
-HOST="$1"
+# wait-for.sh host:port -- comando
+
+HOST_PORT=$1
 shift
 CMD="$@"
 
-until nc -z $HOST; do
-  echo "Aguardando $HOST..."
+HOST=$(echo "$HOST_PORT" | cut -d: -f1)
+PORT=$(echo "$HOST_PORT" | cut -d: -f2)
+
+echo "Aguardando $HOST:$PORT ficar disponível..."
+
+while ! nc -z "$HOST" "$PORT"; do
   sleep 2
 done
 
+echo "$HOST:$PORT está disponível, iniciando o app..."
 exec $CMD
