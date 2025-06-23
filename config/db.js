@@ -9,12 +9,15 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME || "bancodeobjetos",
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.log("Erro ao conectar", err);
-  } else {
-    console.log("Conectado com sucesso!");
-  }
-});
+setTimeout(() => {
+  connection.connect((err) => {
+    if (err) {
+      console.log("Erro ao conectar", err);
+    } else {
+      console.log("Conectado com sucesso!");
+    }
+  });
+}, 10000); // espera 5 segundos
 
 module.exports = connection;
+
