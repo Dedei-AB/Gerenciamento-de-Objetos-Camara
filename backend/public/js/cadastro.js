@@ -37,7 +37,9 @@ pisoSelecionado.addEventListener("change", atualizarLocais);
 botaoConcluido.addEventListener("click", async function () {
   const dados = await pegarDados();
   const idObjeto = dados.length + 1;
-  const codigoObj = document.getElementById("codigoInput-cadastro").value.trim();
+  const codigoObj = document
+    .getElementById("codigoInput-cadastro")
+    .value.trim();
   const obj = nomeObjeto.value.trim();
   const complemento = nomeComplemento.value.trim();
   const estado = nomeStatus.value.trim();
@@ -45,12 +47,14 @@ botaoConcluido.addEventListener("click", async function () {
   const local = nomeLocal.value.trim();
 
   if (!obj || !complemento || !estado || !piso || !local) {
-    mostrarAlerta("Por favor, preencha todos os campos antes de concluir o cadastro.");
+    mostrarAlerta(
+      "Por favor, preencha todos os campos antes de concluir o cadastro."
+    );
     return;
   }
 
-  if (codigoObj.length < 4){
-    alert("Código do objeto inválido. O código teve ter 4 dígitos!")
+  if (codigoObj.length < 4) {
+    alert("Código do objeto inválido. O código teve ter 4 dígitos!");
     return;
   }
 
@@ -64,7 +68,7 @@ botaoConcluido.addEventListener("click", async function () {
   };
 
   try {
-    const res = await fetch("http://localhost:3000/cadastrar", {
+    const res = await fetch("http://10.1.150.10:3000/cadastrar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

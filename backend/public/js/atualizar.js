@@ -12,7 +12,6 @@ async function pegarSalas() {
 
 pegarSalas();
 
-
 /* Essa parte é responsável por receber os valores da página buscar.html e 
 Alterar os valores de acordo com o objeto selecionado.*/
 document.addEventListener("DOMContentLoaded", async () => {
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   <option value="1">Piso 1</option>
           <option value="3">Térreo</option>
           <option value="4">Edifício e Fachada</option>`;
-    } else if (piso == 3){
+    } else if (piso == 3) {
       document.getElementById(
         "pisos"
       ).innerHTML = `<option value="3">Térreo</option>
@@ -64,12 +63,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       <option value="2">Piso 2</option>
       <option value="4">Edifício e Fachada</option>`;
     } else {
- document.getElementById(
+      document.getElementById(
         "pisos"
       ).innerHTML = `<option value="4">Edifício e Fachada</option>
       <option value="3">Térreo</option>
       <option value="1">Piso 1</option>
-      <option value="2">Piso 2</option>`
+      <option value="2">Piso 2</option>`;
     }
 
     // Atualizar sala
@@ -111,12 +110,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 botaoAtualizar.addEventListener("click", async function () {
   const id = document.getElementById("codigo").value;
   const dados = JSON.parse(localStorage.getItem("objetoParaEditar"));
-  console.log(dados.idObjeto)
+  console.log(dados.idObjeto);
   if (!nomeobjeto.value) {
     mostrarAlerta("Preencha todos os campos!");
     return;
-  }else if(Number(document.getElementById("codigo")) < 999){
-    mostrarAlerta("O código deve ter 4 dígitos!")
+  } else if (Number(document.getElementById("codigo")) < 999) {
+    mostrarAlerta("O código deve ter 4 dígitos!");
     return;
   }
 
@@ -125,10 +124,10 @@ botaoAtualizar.addEventListener("click", async function () {
     sala: Number(salaSelect.value),
     complemento: nomeobjeto.value,
     codigo: Number(id),
-    idObjeto: dados.idObjeto
+    idObjeto: dados.idObjeto,
   };
 
-  const res = await fetch("http://localhost:3000/atualizar", {
+  const res = await fetch("http://10.1.150.10:3000/atualizar", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -136,10 +135,10 @@ botaoAtualizar.addEventListener("click", async function () {
   const data = await res.json();
   mostrarAlerta(data.mensagem || data.erro);
   if (!data.erro) {
-  setTimeout(() => {
-    window.location.href = "buscar.html";
-  }, 2000); // Redireciona após 2 segundos
-}
+    setTimeout(() => {
+      window.location.href = "buscar.html";
+    }, 2000); // Redireciona após 2 segundos
+  }
 });
 
 function mostrarAlerta(mensagem) {
