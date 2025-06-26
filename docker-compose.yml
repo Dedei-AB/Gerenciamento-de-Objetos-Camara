@@ -1,30 +1,17 @@
 version: "3.8"
 
 services:
-  db:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bancodeobjetos
-      MYSQL_USER: Admin
-      MYSQL_PASSWORD: "Mudar@1234"
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-  app:
-    image: seuusuario/gobjetos:latest
+  backend:
+    build:
+      context: ./backend
     ports:
       - "3000:3000"
-    depends_on:
-      - db
     environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: Admin
-      DB_PASSWORD: "Mudar@1234"
-      DB_NAME: bancodeobjetos
-
-volumes:
-  mysql_data:
+      - DB_HOST=gobjetos-backend_db # nome do container MySQL da outra stack
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=bancodeobjetos
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
