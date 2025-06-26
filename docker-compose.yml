@@ -2,12 +2,11 @@ version: "3.8"
 
 services:
   backend:
-    build:
-      context: ./backend
+    image: stemas22122007/gobjetos-frontend:latest # Use sua imagem pronta aqui
     ports:
       - "3000:3000"
     environment:
-      - DB_HOST=gobjetos-backend_db # nome do container MySQL da outra stack
+      - DB_HOST=gobjetos-backend_db
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=bancodeobjetos
