@@ -2,15 +2,21 @@ version: "3.8"
 
 services:
   backend:
-    image: stemas22122007/gobjetos-frontend:latest # Use sua imagem pronta aqui
+    image: stemas22122007/gobjetos-frontend:latest
     ports:
       - "3000:3000"
     environment:
-      - DB_HOST=gobjetos-backend_db
-      - DB_USER=root
-      - DB_PASSWORD=root
+      - DB_HOST=db # agora pode usar o nome "db" se estiver na mesma rede
+      - DB_USER=Admin
+      - DB_PASSWORD=Mudar@1234
       - DB_NAME=bancodeobjetos
+    networks:
+      - objetos_gerenciar_rede
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
+
+networks:
+  objetos_gerenciar_rede:
+    external: true
