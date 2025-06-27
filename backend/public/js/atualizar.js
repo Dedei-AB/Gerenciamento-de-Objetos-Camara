@@ -150,6 +150,7 @@ function mostrarAlerta(mensagem) {
 function fecharAlerta() {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("meuAlerta").style.display = "none";
+  window.location.href = "buscar.html";
 }
 
 // Garante que o botão X funciona
