@@ -67,6 +67,7 @@ botaoConcluido.addEventListener("click", async function () {
     complemento: complemento,
   };
 
+  const emanuel = "Bonitão";
   try {
     const res = await fetch("/cadastrar", {
       method: "POST",
