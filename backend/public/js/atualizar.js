@@ -127,7 +127,7 @@ botaoAtualizar.addEventListener("click", async function () {
     idObjeto: dados.idObjeto,
   };
 
-  const res = await fetch("http://localhost:3000/atualizar", {
+  const res = await fetch("/atualizar", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
