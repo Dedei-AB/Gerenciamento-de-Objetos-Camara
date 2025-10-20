@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const objetosRoutes = require("./routes/objeto.js");
+const visitasRoutes = require("./routes/visitas.js"); // ← nova rota adicionada
 
 const app = express();
 
@@ -17,11 +18,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Rotas principais
 app.use("/", objetosRoutes);
+app.use("/", visitasRoutes); // ← adicionada aqui
 
 const PORT = 3000;
 const HOST = "0.0.0.0";
 
 app.listen(PORT, HOST, () => {
-  console.log(`Servidor rodando em http://${HOST}:${PORT}`);
+  console.log(`✅ Servidor rodando em http://${HOST}:${PORT}`);
 });
