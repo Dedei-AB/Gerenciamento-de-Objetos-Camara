@@ -1,30 +1,31 @@
 const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const objetosRoutes = require("./routes/objeto.js");
-const visitasRoutes = require("./routes/visitas.js"); // ← nova rota adicionada
-
 const app = express();
+const { getDatabase } = require("./db");
 
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Rotas principais
-app.use("/", objetosRoutes);
-app.use("/", visitasRoutes); // ← adicionada aqui
-
-const PORT = 3000;
-const HOST = "0.0.0.0";
-
-app.listen(PORT, HOST, () => {
-  console.log(`✅ Servidor rodando em http://${HOST}:${PORT}`);
+// Exemplo de rota com sistemaVisita
+app.get("/usuariosVisita", async (req, res) => {
+  const db = getDatabase("sistemaVisita");
+  try {
+    const [rows] = await db.query("SELECT * FROM usuarios");
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Erro no sistema de visita");
+  }
 });
+
+// Exemplo de rota com bancodeobjetos
+app.get("/objetos", async (req, res) => {
+  const db = getDatabase("bancodeobjetos");
+  try {
+    const [rows] = await db.query("SELECT * FROM objetos");
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Erro no banco de objetos");
+  }
+});
+
+app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
