@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const { getDatabase } = require("./db");
+const { getDatabase } = require("./config/db");
 
 app.use(express.json());
 
