@@ -1,4 +1,5 @@
-const db = require("../config/db");
+const { getDatabase } = require("../config/db");
+const db = getDatabase("sistemaVisita");
 
 // ------------------- Listar visitas -------------------
 
