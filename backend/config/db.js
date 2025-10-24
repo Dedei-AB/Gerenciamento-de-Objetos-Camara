@@ -18,8 +18,8 @@ const dbSistemaVisita = poolSistemaVisita.promise();
 // Conexão bancodeobjetos
 const poolBancodeObjetos = mysql.createPool({
   connectionLimit: 10,
-  host: process.env.DB_HOST || "db",
-  port: Number(process.env.DB_PORT) || 3307,
+  host: process.env.DB_HOST || "10.1.150.10",
+  port: Number(process.env.DB_PORT) || 3306,
   user: process.env.DB_USER || "Admin",
   password: process.env.DB_PASSWORD || "Mudar@1234",
   database: process.env.DB_NAME || "bancodeobjetos",

@@ -1,179 +1,160 @@
-const db = require("../config/db");
+const { getDatabase } = require("../config/db");
+const db = getDatabase("bancodeobjetos"); // ✅ conexão certa
 
-// Selects da página Buscar (Andrei)
+// ---------------------- Página Buscar (Andrei) ----------------------
 
-exports.getObjetos = (req, res) => {
-  db.query("SELECT * FROM objeto", (err, results) => {
-    if (err) return res.status(500).json({ erro: "Erro ao buscar objetos" });
+exports.getObjetos = async (req, res) => {
+  try {
+    const [results] = await db.query("SELECT * FROM objeto");
     res.json(results);
-  });
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao buscar objetos" });
+  }
 };
 
-exports.buscarObjetos = (req, res) => {
+exports.buscarObjetos = async (req, res) => {
   const sql = `
     SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento 
-    FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, 
-         bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
-    WHERE TipoObjeto_idTipoObjeto = idTipoObjeto 
-      AND Status_idStatus = idStatus
-      AND idSala = Sala_idSala
-      AND TipoSala_idTipoSala = idTipoSala
-      AND idPiso = Piso_idPiso
+    FROM objeto
+    JOIN status ON Status_idStatus = idStatus
+    JOIN sala ON idSala = Sala_idSala
+    JOIN tipoobjeto ON TipoObjeto_idTipoObjeto = idTipoObjeto
+    JOIN tiposala ON TipoSala_idTipoSala = idTipoSala
+    JOIN piso ON idPiso = Piso_idPiso
     ORDER BY codigo ASC;
   `;
-
-  db.query(sql, (err, results) => {
-    if (err) {
-      console.error("Erro ao buscar objetos:", {
-        message: err.message,
-        code: err.code,
-        sqlMessage: err.sqlMessage,
-        sqlState: err.sqlState,
-      });
-
-      return res.status(500).json({
-        error: true,
-        message: err.message,
-        code: err.code,
-        sqlMessage: err.sqlMessage,
-        sqlState: err.sqlState,
-      });
-    }
-
+  try {
+    const [results] = await db.query(sql);
     res.json(results);
-  });
+  } catch (err) {
+    console.error("Erro ao buscar objetos:", err);
+    res.status(500).json({ error: true, message: err.message });
+  }
 };
 
-exports.buscarObjetosTipoObj = (req, res) => {
-  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
-where TipoObjeto_idTipoObjeto = idTipoObjeto 
-and Status_idStatus=idStatus
-and idSala= Sala_idSala
-and TipoSala_idTipoSala=idTipoSala
-and idPiso=Piso_idPiso
-ORDER BY NomeDoTipo ASC;`;
-
-  const codigo = req.body;
-
-  db.query(sql, codigo, (err, results) => {
-    if (err) return res.status(500).json({ error: err });
+exports.buscarObjetosTipoObj = async (req, res) => {
+  const sql = `
+    SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento
+    FROM objeto
+    JOIN status ON Status_idStatus = idStatus
+    JOIN sala ON idSala = Sala_idSala
+    JOIN tipoobjeto ON TipoObjeto_idTipoObjeto = idTipoObjeto
+    JOIN tiposala ON TipoSala_idTipoSala = idTipoSala
+    JOIN piso ON idPiso = Piso_idPiso
+    ORDER BY NomeDoTipo ASC;
+  `;
+  try {
+    const [results] = await db.query(sql);
     res.json(results);
-  });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
 };
 
-exports.buscarObjetosNome = (req, res) => {
-  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
-where TipoObjeto_idTipoObjeto = idTipoObjeto 
-and Status_idStatus=idStatus
-and idSala= Sala_idSala
-and TipoSala_idTipoSala=idTipoSala
-and idPiso=Piso_idPiso
-ORDER BY complemento ASC;`;
-
-  const codigo = req.body;
-
-  db.query(sql, codigo, (err, results) => {
-    if (err) return res.status(500).json({ error: err });
+exports.buscarObjetosNome = async (req, res) => {
+  const sql = `
+    SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento
+    FROM objeto
+    JOIN status ON Status_idStatus = idStatus
+    JOIN sala ON idSala = Sala_idSala
+    JOIN tipoobjeto ON TipoObjeto_idTipoObjeto = idTipoObjeto
+    JOIN tiposala ON TipoSala_idTipoSala = idTipoSala
+    JOIN piso ON idPiso = Piso_idPiso
+    ORDER BY Complemento ASC;
+  `;
+  try {
+    const [results] = await db.query(sql);
     res.json(results);
-  });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
 };
 
-exports.buscarObjetosSala = (req, res) => {
-  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
-where TipoObjeto_idTipoObjeto = idTipoObjeto 
-and Status_idStatus=idStatus
-and idSala= Sala_idSala
-and TipoSala_idTipoSala=idTipoSala
-and idPiso=Piso_idPiso
-ORDER BY NomeSala ASC;`;
-
-  const codigo = req.body;
-
-  db.query(sql, codigo, (err, results) => {
-    if (err) return res.status(500).json({ error: err });
+exports.buscarObjetosSala = async (req, res) => {
+  const sql = `
+    SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento
+    FROM objeto
+    JOIN status ON Status_idStatus = idStatus
+    JOIN sala ON idSala = Sala_idSala
+    JOIN tipoobjeto ON TipoObjeto_idTipoObjeto = idTipoObjeto
+    JOIN tiposala ON TipoSala_idTipoSala = idTipoSala
+    JOIN piso ON idPiso = Piso_idPiso
+    ORDER BY NomeSala ASC;
+  `;
+  try {
+    const [results] = await db.query(sql);
     res.json(results);
-  });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
 };
 
-exports.buscarObjetosStatus = (req, res) => {
-  const sql = `SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento FROM bancodeobjetos.objeto, bancodeobjetos.status, bancodeobjetos.sala, bancodeobjetos.tipoobjeto, bancodeobjetos.tiposala, bancodeobjetos.piso
-where TipoObjeto_idTipoObjeto = idTipoObjeto 
-and Status_idStatus=idStatus
-and idSala= Sala_idSala
-and TipoSala_idTipoSala=idTipoSala
-and idPiso=Piso_idPiso
-ORDER BY Nome ASC;`;
-
-  const codigo = req.body;
-
-  db.query(sql, codigo, (err, results) => {
-    if (err) return res.status(500).json({ error: err });
+exports.buscarObjetosStatus = async (req, res) => {
+  const sql = `
+    SELECT idObjeto, codigo, NomeDoTipo, Nome, NomeSala, Complemento
+    FROM objeto
+    JOIN status ON Status_idStatus = idStatus
+    JOIN sala ON idSala = Sala_idSala
+    JOIN tipoobjeto ON TipoObjeto_idTipoObjeto = idTipoObjeto
+    JOIN tiposala ON TipoSala_idTipoSala = idTipoSala
+    JOIN piso ON idPiso = Piso_idPiso
+    ORDER BY Nome ASC;
+  `;
+  try {
+    const [results] = await db.query(sql);
     res.json(results);
-  });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
 };
 
-// -----------------------------------------------------------------------------------
-// Selects da página Cadastrar (Emanuel)
+// ---------------------- Página Cadastrar (Emanuel) ----------------------
 
-exports.cadastrarObjeto = (req, res) => {
-  const { idObjeto, codigo, tipoObjeto, complemento, status, sala } = req.body;
-
-  const sql =
-    "INSERT INTO objeto ( codigo, TipoObjeto_idTipoObjeto, complemento, Status_idStatus, Sala_idSala) VALUES ( ?, ?, ?, ?, ?)";
-  const values = [codigo, tipoObjeto, complemento, status, sala];
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Erro ao inserir:", err.sqlMessage || err.message || err);
-      return res.status(500).json({
-        erro:
-          (err.sqlMessage ? "Código já utilizado." : "none") ||
-          (err.message ? "Código já utilizado." : "none") ||
-          "Erro ao cadastrar objeto",
-      });
-    }
+exports.cadastrarObjeto = async (req, res) => {
+  const { codigo, tipoObjeto, complemento, status, sala } = req.body;
+  const sql = `
+    INSERT INTO objeto (codigo, TipoObjeto_idTipoObjeto, complemento, Status_idStatus, Sala_idSala)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+  try {
+    await db.query(sql, [codigo, tipoObjeto, complemento, status, sala]);
     res.status(201).json({ mensagem: "Objeto cadastrado com sucesso" });
-  });
+  } catch (err) {
+    console.error("Erro ao cadastrar objeto:", err);
+    res.status(500).json({
+      erro: err.sqlMessage || "Erro ao cadastrar objeto",
+    });
+  }
 };
 
-exports.buscarSalas = (req, res) => {
-  const sql = "SELECT idSala, NomeSala, Piso_idPiso FROM sala;";
-
-  db.query(sql, (err, resultados) => {
-    if (err) {
-      console.error("Erro ao buscar salas:", err);
-      return res.status(500).json({ erro: "Erro ao buscar salas" });
-    }
-
-    res.json(resultados); // Array de objetos { idSala, NomeSala }
-  });
+exports.buscarSalas = async (req, res) => {
+  try {
+    const [results] = await db.query(
+      "SELECT idSala, NomeSala, Piso_idPiso FROM sala;"
+    );
+    res.json(results);
+  } catch (err) {
+    console.error("Erro ao buscar salas:", err);
+    res.status(500).json({ erro: "Erro ao buscar salas" });
+  }
 };
 
-// -----------------------------------------------------------------------------------
-// Selects da página Atualizar (Macedo)
+// ---------------------- Página Atualizar (Macedo) ----------------------
 
-exports.atualizarObjetos = (req, res) => {
+exports.atualizarObjetos = async (req, res) => {
   const { status, sala, complemento, codigo, idObjeto } = req.body;
   const sql = `
-    UPDATE objeto 
-    SET Status_idStatus = ?, 
-        Sala_idSala = ?, 
-        Complemento = ?,
-        codigo = ?
-    WHERE idObjeto = ?`;
-
-  const values = [status, sala, complemento, codigo, idObjeto];
-
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Erro ao inserir:", err);
-      return res.status(500).json({
-        erro:
-          (err.sqlMessage ? "Código já utilizado." : "none") ||
-          (err.message ? "Código já utilizado." : "none") ||
-          "Erro ao cadastrar objeto",
-      });
-    }
-
-    res.status(201).json({ mensagem: "Objeto atualizado com sucesso!" });
-  });
+    UPDATE objeto
+    SET Status_idStatus = ?, Sala_idSala = ?, Complemento = ?, codigo = ?
+    WHERE idObjeto = ?
+  `;
+  try {
+    await db.query(sql, [status, sala, complemento, codigo, idObjeto]);
+    res.status(200).json({ mensagem: "Objeto atualizado com sucesso!" });
+  } catch (err) {
+    console.error("Erro ao atualizar objeto:", err);
+    res.status(500).json({
+      erro: err.sqlMessage || "Erro ao atualizar objeto",
+    });
+  }
 };
