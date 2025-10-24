@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const { getDatabase } = require("./config/db");
 
-const visitasRoutes = require("./routes/visitasRoutes");
-const objetosRoutes = require("./routes/objetosRoutes");
+const visitasRoutes = require("./routes/visitas");
+const objetosRoutes = require("./routes/objeto");
 
 app.use(express.json());
 
