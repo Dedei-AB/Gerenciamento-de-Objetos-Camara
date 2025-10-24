@@ -1,9 +1,19 @@
 const express = require("express");
-const app = express();
+const cors = require("cors");
 const { getDatabase } = require("./config/db");
 
 const visitasRoutes = require("./routes/visitas");
 const objetosRoutes = require("./routes/objeto");
+
+const app = express();
+
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 
